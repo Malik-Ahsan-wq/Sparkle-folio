@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./Navbar";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const brands = [
@@ -284,7 +285,7 @@ export default function HomePage() {
   </div>
 </div>
       </main>
-
+     
       {/* Footer */}
       <footer className="mt-24 text-center pb-12">
         <div className="text-xl font-bold uppercase tracking-tighter mb-8 opacity-80">AHSAN BASHIR</div>

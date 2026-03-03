@@ -32,7 +32,7 @@ const ProjectsPage = () => {
             </div>
             <div className="flex justify-between items-end">
               <div>
-                <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Watch Collection</p>
+                <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Watch Collection website this is full stack ecommerce website using nextjs,tailwind css ,typescript ,aos animations and supabase </p>
                 <h2 className="text-xl font-semibold">Men Wrist</h2>
               </div>
               <ArrowUpRight className="text-gray-700 group-hover:text-white transition" />
@@ -48,8 +48,8 @@ const ProjectsPage = () => {
               </div>
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Online Food Delivery</p>
-                  <h2 className="text-xl font-semibold">Rohtas Restaurant</h2>
+                  <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Online Food Delivery app with the using of nextjs ,tailwind css ,typescript and aos animations</p>
+                  <h2 className="text-xl font-semibold">AB Restaurent </h2>
                 </div>
                 <ArrowUpRight className="text-gray-700 group-hover:text-white transition" />
               </div>
@@ -62,8 +62,8 @@ const ProjectsPage = () => {
               </div>
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Branding</p>
-                  <h2 className="text-xl font-semibold">Wine Shop</h2>
+                  <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">this is the only Front end of Rental car app using HTML ,CSS3,javascript</p>
+                  <h2 className="text-xl font-semibold">Rental Car Website</h2>
                 </div>
                 <ArrowUpRight className="text-gray-700 group-hover:text-white transition" />
               </div>
@@ -77,8 +77,8 @@ const ProjectsPage = () => {
             </div>
             <div className="flex justify-between items-end">
               <div>
-                <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">E-Commer Store</p>
-                <h2 className="text-xl font-semibold">Shopify</h2>
+                <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">E-Commer Store For specially mens jackets for all categories,using next js tailwind css and typescript</p>
+                <h2 className="text-xl font-semibold">Shopify Store App</h2>
               </div>
               <ArrowUpRight className="text-gray-700 group-hover:text-white transition" />
             </div>
@@ -91,8 +91,8 @@ const ProjectsPage = () => {
             </div>
             <div className="flex justify-between items-end">
               <div>
-                <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Travel Agency</p>
-                <h2 className="text-xl font-semibold">Zis Travels</h2>
+                <p className="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Mens Jacket dashboards with nextjs, tailwind css and typescript</p>
+                <h2 className="text-xl font-semibold">Jackets Dashboards</h2>
               </div>
               <ArrowUpRight className="text-gray-700 group-hover:text-white transition" />
             </div>

@@ -48,34 +48,11 @@ const ContactPage = () => {
       {/* SEO Content Section */}
       <section className="max-w-6xl mx-auto mb-16">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Contact <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Ahsan Bashir</span>
-          </h1>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-            Ready to bring your digital vision to life? As a full-stack developer specializing in MERN stack and Next.js, I create scalable web applications that drive business growth. Whether you need a modern website, e-commerce platform, or custom web solution, let's collaborate to build something extraordinary together.
-          </p>
+      
+      
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div className="text-center">
-            <h3 className="text-xl font-semibold mb-3 text-indigo-400">Web Development Services</h3>
-            <p className="text-gray-400 text-sm">
-              Custom web applications, responsive design, and modern frontend development using React.js, Next.js, and Tailwind CSS for optimal user experience.
-            </p>
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-semibold mb-3 text-purple-400">Full-Stack Solutions</h3>
-            <p className="text-gray-400 text-sm">
-              Complete MERN stack development with MongoDB, Express.js, React.js, and Node.js. Database design, API development, and secure authentication systems.
-            </p>
-          </div>
-          <div className="text-center">
-            <h3 className="text-xl font-semibold mb-3 text-blue-400">Project Consultation</h3>
-            <p className="text-gray-400 text-sm">
-              Technical consultation, project planning, and architecture design. From concept to deployment, I guide you through every step of the development process.
-            </p>
-          </div>
-        </div>
+    
       </section>
 
       <main data-aos="fade-up" className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">

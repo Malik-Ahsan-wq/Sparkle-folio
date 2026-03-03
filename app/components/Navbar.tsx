@@ -4,10 +4,12 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
+
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Works", href: "/works" },
+  { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -15,6 +17,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+    <>
+   
     <nav className="fixed top-0 z-[9999] w-full border-b border-white/5 bg-[#0F0F0F] backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="flex h-16 sm:h-20 items-center justify-between">
@@ -139,5 +143,6 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
+    </>
   );
 }
