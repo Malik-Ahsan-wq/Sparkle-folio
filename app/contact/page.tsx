@@ -38,7 +38,7 @@ const ContactPage = () => {
   return (
     <>
     <Navbar/>
-    <div className="min-h-screen bg-[#0F0F0F] text-white p-4 md:p-8 lg:p-12 font-sans">
+    <div className="pt-24   md:mt-12  min-h-screen bg-[#0F0F0F] text-white p-4 md:pt-8 lg:p-12 font-sans">
     
 
       <main data-aos="fade-up" className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -56,7 +56,7 @@ const ContactPage = () => {
                 <div>
                   <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Mail Us</p>
                   <p className="text-sm text-gray-300">ahsanmalikking57@gmail.com</p>
-                  <p className="text-sm text-gray-300">ahsanmalikking57@gmail.com</p>
+              
                 </div>
               </div>
 
@@ -102,7 +102,7 @@ const ContactPage = () => {
         </div>
 
         {/* Right Column: Contact Form */}
-        <div data-aos="zoom-in" className="lg:col-span-2 bg-[#1A1A1A] rounded-3xl p-8 md:p-12 border border-white/5 relative">
+        <div data-aos="zoom-in" className="lg:col-span-2  bg-[#1A1A1A] rounded-3xl p-8 md:p-12 border border-white/5 relative">
           {/* Sparkle Accent */}
           <Sparkle className="absolute top-8 right-8 text-zinc-700" size={40} />
 

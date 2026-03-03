@@ -124,7 +124,7 @@ export default function HomePage() {
   return (
     <div
       ref={container}
-      className="min-h-screen bg-[#0F0F0F] text-white font-sans"
+      className=" pt-24 md:pt-32 min-h-screen bg-[#0F0F0F] text-white font-sans"
     >
       {/* Navigation – can be animated later if needed */}
   

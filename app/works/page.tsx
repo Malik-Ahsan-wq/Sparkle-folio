@@ -8,7 +8,7 @@ const ProjectsPage = () => {
   return (
     <>
     <Navbar/>
-    <div className="min-h-screen bg-[#0F0F0F] text-white p-4 md:p-8 lg:p-12 font-sans">
+    <div className="pt-24 md:mt-15 min-h-screen bg-[#0F0F0F] text-white p-4 md:p-8 lg:p-12 font-sans">
       {/* Navigation */}
  
 
