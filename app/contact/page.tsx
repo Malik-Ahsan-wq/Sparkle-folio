@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Instagram, Linkedin, UserCircle2, Sparkle, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Sparkle, Send } from 'lucide-react';
 import Navbar from '../components/Navbar';
+
+// Lazy load social icons
+const Instagram = lazy(() => import('lucide-react').then(module => ({ default: module.Instagram })));
+const Linkedin = lazy(() => import('lucide-react').then(module => ({ default: module.Linkedin })));
+const UserCircle2 = lazy(() => import('lucide-react').then(module => ({ default: module.UserCircle2 })));
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -38,8 +43,40 @@ const ContactPage = () => {
   return (
     <>
     <Navbar/>
-    <div className="pt-24   md:mt-12  min-h-screen bg-[#0F0F0F] text-white p-4 md:pt-8 lg:p-12 font-sans">
+    <div className="pt-24 md:pt-32 min-h-screen bg-[#0F0F0F] text-white p-4 md:p-8 lg:p-12 font-sans">
     
+      {/* SEO Content Section */}
+      <section className="max-w-6xl mx-auto mb-16">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Contact <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Ahsan Bashir</span>
+          </h1>
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+            Ready to bring your digital vision to life? As a full-stack developer specializing in MERN stack and Next.js, I create scalable web applications that drive business growth. Whether you need a modern website, e-commerce platform, or custom web solution, let's collaborate to build something extraordinary together.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="text-center">
+            <h3 className="text-xl font-semibold mb-3 text-indigo-400">Web Development Services</h3>
+            <p className="text-gray-400 text-sm">
+              Custom web applications, responsive design, and modern frontend development using React.js, Next.js, and Tailwind CSS for optimal user experience.
+            </p>
+          </div>
+          <div className="text-center">
+            <h3 className="text-xl font-semibold mb-3 text-purple-400">Full-Stack Solutions</h3>
+            <p className="text-gray-400 text-sm">
+              Complete MERN stack development with MongoDB, Express.js, React.js, and Node.js. Database design, API development, and secure authentication systems.
+            </p>
+          </div>
+          <div className="text-center">
+            <h3 className="text-xl font-semibold mb-3 text-blue-400">Project Consultation</h3>
+            <p className="text-gray-400 text-sm">
+              Technical consultation, project planning, and architecture design. From concept to deployment, I guide you through every step of the development process.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <main data-aos="fade-up" className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
         
@@ -88,15 +125,21 @@ const ContactPage = () => {
           <section data-aos="fade-up">
             <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-8">Social Info</h3>
             <div data-aos="fade-up" className="flex gap-4">
-              <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
-                <Instagram size={24} />
-              </a>
-              <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
-                <UserCircle2 size={24} />
-              </a>
-              <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
-                <Linkedin size={24} />
-              </a>
+              <Suspense fallback={<div className="w-14 h-14 bg-[#1A1A1A] rounded-full border border-white/5 animate-pulse" />}>
+                <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
+                  <Instagram size={24} />
+                </a>
+              </Suspense>
+              <Suspense fallback={<div className="w-14 h-14 bg-[#1A1A1A] rounded-full border border-white/5 animate-pulse" />}>
+                <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
+                  <UserCircle2 size={24} />
+                </a>
+              </Suspense>
+              <Suspense fallback={<div className="w-14 h-14 bg-[#1A1A1A] rounded-full border border-white/5 animate-pulse" />}>
+                <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
+                  <Linkedin size={24} />
+                </a>
+              </Suspense>
             </div>
           </section>
         </div>
