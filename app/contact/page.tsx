@@ -1,9 +1,40 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Instagram, Linkedin, UserCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Linkedin, UserCircle2, Sparkle, Send } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [status, setStatus] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus('');
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setStatus('Message sent successfully! ✨');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setStatus('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
     <Navbar/>
@@ -72,42 +103,79 @@ const ContactPage = () => {
 
         {/* Right Column: Contact Form */}
         <div data-aos="zoom-in" className="lg:col-span-2 bg-[#1A1A1A] rounded-3xl p-8 md:p-12 border border-white/5 relative">
-          {/* Star Accent */}
-          <div className="absolute top-8 right-8 text-zinc-700">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor">
-              <path d="M20 0L22.5 17.5L40 20L22.5 22.5L20 40L17.5 22.5L0 20L17.5 17.5L20 0Z" />
-            </svg>
-          </div>
+          {/* Sparkle Accent */}
+          <Sparkle className="absolute top-8 right-8 text-zinc-700" size={40} />
 
           <h2 className="text-4xl md:text-5xl font-bold mb-12">
             Let&apos;s work <span className="text-blue-500">together.</span>
           </h2>
 
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input 
               type="text" 
               placeholder="Name *" 
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full bg-[#1F1F1F] border border-white/5 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-blue-500 transition"
             />
             <input 
               type="email" 
               placeholder="Email *" 
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full bg-[#1F1F1F] border border-white/5 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-blue-500 transition"
             />
             <input 
               type="text" 
               placeholder="Your Subject *" 
+              required
+              value={formData.subject}
+              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               className="w-full bg-[#1F1F1F] border border-white/5 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-blue-500 transition"
             />
             <textarea 
               rows={5} 
               placeholder="Your Message *" 
+              required
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full bg-[#1F1F1F] border border-white/5 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-blue-500 transition resize-none"
             ></textarea>
             
-            <button className="w-full bg-[#2A2A2A] text-white font-medium py-4 rounded-xl hover:bg-white hover:text-black transition duration-300">
-              Send Message
-            </button>
+       
+
+<button
+  type="submit"
+  disabled={loading}
+  className={`cursor-pointer
+    relative w-full flex items-center justify-center gap-2
+    bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600
+    text-white font-semibold py-4 rounded-xl
+    shadow-lg shadow-indigo-500/20
+    hover:scale-[1.03] hover:shadow-xl
+    active:scale-95
+    transition-all duration-300 ease-out
+    disabled:opacity-50 disabled:cursor-not-allowed
+    overflow-hidden
+  `}
+>
+  {/* Animated Shine / Gradient */}
+  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out rounded-xl"></span>
+
+  {/* Icon */}
+  <Send className="relative text-white w-5 h-5 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+
+  {/* Button Text */}
+  <span className="relative">{loading ? 'Sending...' : 'Send Message'}</span>
+</button>
+            
+            {status && (
+              <p className={`text-center text-sm ${status.includes('success') ? 'text-green-500' : 'text-red-500'}`}>
+                {status}
+              </p>
+            )}
           </form>
         </div>
       </main>
