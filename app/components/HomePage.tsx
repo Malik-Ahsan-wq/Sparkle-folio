@@ -4,7 +4,10 @@ import React, {useRef } from "react";
 import Link from "next/link";
 
 import Image from "next/image";
-import { ArrowUpRight, Sparkle, Download, Folder } from "lucide-react";
+import { ArrowUpRight, Sparkle, Download, Folder,Globe } from "lucide-react";
+import {  FaLinkedin, FaFileContract } from "react-icons/fa";
+import { MdEmail, } from "react-icons/md";
+
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -230,18 +233,60 @@ export default function HomePage() {
         {/* Bottom Action Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 action-cards">
           <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/5 group flex flex-col justify-between action-card">
-            <div className="flex gap-4 justify-center py-4">
-              <div className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5" />
-              <div className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5" />
-            </div>
+          <div className="flex gap-6 justify-center py-4">
+
+  {/* GitHub */}
+  <Link
+    href="/contact"
+    target="_blank"
+    className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5 
+               flex items-center justify-center 
+               hover:bg-white/10 hover:scale-110 transition duration-300"
+  >
+    <FaFileContract size={24} className="text-blue-500" />
+  </Link>
+
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com/in/m-ahsan-bashir/"
+    target="_blank"
+    className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5 
+               flex items-center justify-center 
+               hover:bg-white/10 hover:scale-110 transition duration-300"
+  >
+    <FaLinkedin size={24} className="text-blue-500" />
+  </a>
+
+  {/* Email */}
+  <a
+    href="ahsanmalikking57@gmail.com"
+    className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5 
+               flex items-center justify-center 
+               hover:bg-white/10 hover:scale-110 transition duration-300"
+  >
+    <MdEmail size={24} className="text-blue-500" />
+  </a>
+
+  {/* WhatsApp */}
+  <a
+    href="public/Ahsan-resume-black-theme (1).pdf"
+      download="public/Ahsan-resume-black-theme (1).pdf"
+    className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5 
+               flex items-center justify-center 
+               hover:bg-white/10 hover:scale-110 transition duration-300"
+  >
+    <Globe size={24} className="text-blue-500" />
+  </a>
+
+</div>
             <div>
               <p className="text-gray-500 text-[10px] uppercase tracking-widest">Stay with me</p>
               <h2 className="text-xl font-semibold">Profiles</h2>
             </div>
             <ArrowUpRight className="ml-auto text-gray-700 group-hover:text-white transition" />
           </div>
-
           <div className="md:col-span-2 bg-[#1A1A1A] rounded-3xl p-10 border border-white/5 group flex flex-col justify-between relative overflow-hidden action-card">
+<Link href="/contact">
             <Sparkle className="absolute top-6 left-6 text-gray-700" size={32} />
             <div className="mt-12">
               <h2 className="text-5xl font-bold leading-tight">
@@ -249,11 +294,14 @@ export default function HomePage() {
               </h2>
             </div>
             <ArrowUpRight className="ml-auto text-gray-700 group-hover:text-white transition" />
+          </Link>
           </div>
 
           <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/5 group flex flex-col justify-between action-card">
-            <div className="flex justify-center py-6 opacity-30">
-              <span className="text-5xl italic font-serif">Ahsan Bashir</span>
+            <div className="flex justify-center py-2 opacity-50">
+              <Link href="/about">
+            <img className="w-50" src="/image (26).jpg" alt="" />
+            </Link>
             </div>
             <div>
               <p className="text-gray-500 text-[10px] uppercase tracking-widest">More about me</p>
