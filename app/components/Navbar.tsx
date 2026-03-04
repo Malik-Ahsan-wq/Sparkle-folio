@@ -1,20 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, User, Folder, MessageSquare, Mail } from "lucide-react";
 import { useState } from "react";
-
+import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Works", href: "/works" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "/", icon: Home },
+  { label: "About", href: "/about", icon: User },
+  { label: "Works", href: "/works", icon: Folder },
+  { label: "Testimonials", href: "/testimonials", icon: MessageSquare },
+  { label: "Contact", href: "/contact", icon: Mail },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -37,16 +38,33 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">
-            <div className="flex items-center gap-7 text-sm font-medium text-gray-400">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 rounded-sm"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <div className="flex items-center gap-4">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="group relative"
+                  >
+                    <div
+                      className={`
+                        p-2.5 rounded-lg transition-all duration-300
+                        ${isActive 
+                          ? 'text-white bg-white/10' 
+                          : 'text-gray-400 hover:text-white hover:bg-white/5'
+                        }
+                      `}
+                    >
+                      <Icon size={20} />
+                    </div>
+                    <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                      {item.label}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
 
             {/* CTA */}
@@ -113,17 +131,28 @@ export default function Navbar() {
           </button>
         </div>
 
-        <div className="flex flex-col px-6 py-10 gap-6 text-lg bg-black font-medium">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-gray-300  hover:text-white transition-colors focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-md px-3 py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="flex flex-col px-6 py-10 gap-4 bg-black">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`
+                  flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300
+                  ${isActive
+                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
+                    : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                  }
+                `}
+                onClick={() => setIsOpen(false)}
+              >
+                <Icon size={22} />
+                <span className="text-base font-medium">{item.label}</span>
+              </Link>
+            );
+          })}
 
           <Link
             href="/contact"
