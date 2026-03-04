@@ -128,8 +128,13 @@ export default function HomePage() {
   return (
     <div
       ref={container}
-      className=" pt-24 md:pt-32 min-h-screen bg-[#0F0F0F] text-white font-sans"
-    >
+   className="
+  pt-24 md:pt-32 min-h-screen text-white font-sans bg-[#0F0F0F]
+  bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),
+      linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)]
+  bg-[size:40px_40px]
+  "
+>
       {/* Navigation – can be animated later if needed */}
   
 <Navbar/>
