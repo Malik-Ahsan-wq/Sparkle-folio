@@ -56,6 +56,24 @@ const testimonials: Testimonial[] = [
     text: "Professional, responsive, and deeply understands both design and engineering. Exactly what a growing startup needs.",
     service: "Branding + Web Application",
   },
+  {
+    name: "Malik ",
+    role: "Indian CTO",
+    company: "Hasth Technologies",
+    image: "/image (22).jpg",
+    rating: 5,
+    text: "Professional, responsive, and deeply understands both design and engineering. Exactly what a growing startup needs.",
+    service: "Branding + Web Application",
+  },
+  {
+    name: " Raza",
+    role: "Manager products",
+    company: "Prefixes Technologies",
+    image: "/ff3ed1c6-1c53-4f19-95b2-973cd97b682c.jpg",
+    rating: 5,
+    text: "his content and his is experience is very perfect and his design, responsive, and deeply understands both design and engineering. Exactly what a growing startup needs.",
+    service: "Branding + Web Application",
+  },
 ];
 
 export default function TestimonialsSection() {
