@@ -148,7 +148,7 @@ export default function HomePage() {
                 src="/Gemini_Generated_Image_ke0v4eke0v4eke0v (1).png"
                 alt="Ahsan Bashir"
                 fill
-                className="object-cover"
+                className="object-cover opacity-120 hover:opacity-90 transition-opacity duration-300"
                 priority
               />
             </div>
