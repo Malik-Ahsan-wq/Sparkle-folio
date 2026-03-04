@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, Sparkle } from 'lucide-react';
+import { ArrowUpRight, Sparkle ,User, Code, BadgeCheck, Sparkles} from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 const about = () => {
@@ -51,7 +51,7 @@ const about = () => {
     className="bg-[#1A1A1A] rounded-3xl p-6 md:p-8 border border-white/5 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300"
   >
     <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-6 font-semibold">
-      Experience
+         <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" /> Experience
     </h3>
 
     <div className="space-y-6">
@@ -74,7 +74,7 @@ const about = () => {
     className="bg-[#1A1A1A] rounded-3xl p-6 md:p-8 border border-white/5 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
   >
     <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-6 font-semibold">
-      Education
+         <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" /> Education
     </h3>
 
     <div className="space-y-6">
@@ -93,55 +93,136 @@ const about = () => {
 </div>
 
         {/* Bottom Section: Grid Action Cards */}
-        <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Profiles */}
-          <div data-aos="fade-up" className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/5 group flex flex-col justify-between">
-            <div className="flex gap-4 justify-center py-4">
-               <div className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5" />
-               <div className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5" />
-            </div>
-            <div>
-              <p className="text-gray-500 text-[10px] uppercase tracking-widest">Stay with me</p>
-              <h2 className="text-xl font-semibold">Profiles</h2>
-            </div>
-            <ArrowUpRight className="ml-auto text-gray-700 group-hover:text-white transition" />
-          </div>
-
-          {/* Work Together (Wide) */}
-          <div data-aos="fade-up" className="md:col-span-2 bg-[#1A1A1A] rounded-3xl p-10 border border-white/5 group flex flex-col justify-between relative overflow-hidden">
-            <Sparkle className="absolute top-6 left-6 text-gray-700" size={32} />
-            <div className="mt-12">
-                <h2 className="text-5xl font-bold leading-tight">
-                Let&apos;s <br /> work <span className="text-blue-500">together.</span>
-              </h2>
-            </div>
-            <ArrowUpRight className="ml-auto text-gray-700 group-hover:text-white transition" />
-          </div>
-
-          {/* Credentials */}
-          <div data-aos="fade-up" className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/5 group flex flex-col justify-between">
-            <div className="flex justify-center py-6 opacity-30">
-               <span className="text-5xl italic font-serif">Ahsan </span>
-            </div>
-            <div>
-              <p className="text-gray-500 text-[10px] uppercase tracking-widest">More about me</p>
-              <h2 className="text-xl font-semibold">Credentials</h2>
-            </div>
-            <ArrowUpRight className="ml-auto text-gray-700 group-hover:text-white transition" />
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 px-5 sm:px-8 md:px-10 lg:px-12 py-8 md:py-12 max-w-7xl mx-auto">
+      {/* Profiles Card - smaller side card */}
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        className="md:col-span-3 group relative bg-gradient-to-br from-[#1A1A1A] to-[#111111] rounded-3xl p-6 md:p-8 border border-white/8 overflow-hidden hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-400 ease-out cursor-pointer flex flex-col justify-between"
+      >
+        <div className="flex items-center justify-center gap-5 py-6 md:py-8 opacity-80 group-hover:opacity-100 transition-opacity">
+          <User className="w-14 h-14 md:w-16 md:h-16 text-gray-500 group-hover:text-blue-400 transition-colors duration-300" />
+          <User className="w-14 h-14 md:w-16 md:h-16 text-gray-500 group-hover:text-blue-400 transition-colors duration-300" />
         </div>
+
+        <div className="space-y-2">
+          <p className="text-gray-500 text-xs md:text-sm uppercase tracking-widest font-medium">
+            Stay with me
+          </p>
+          <h3 className="text-xl md:text-2xl font-semibold text-white">
+            Profiles
+          </h3>
+        </div>
+
+        <ArrowUpRight className="absolute bottom-6 right-6 w-6 h-6 text-gray-600 group-hover:text-blue-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+      </div>
+
+      {/* My Stack - main wide card */}
+      <div
+        data-aos="fade-up"
+        data-aos-delay="200"
+        className="md:col-span-6 group relative bg-gradient-to-br from-[#1A1A1A] via-[#0f172a] to-[#1A1A1A] rounded-3xl p-8 md:p-10 lg:p-12 border border-white/8 overflow-hidden hover:border-blue-500/40 hover:shadow-2xl hover:shadow-blue-950/20 transition-all duration-400 ease-out cursor-pointer flex flex-col"
+      >
+        <div className="absolute top-6 left-6 md:top-8 md:left-8 opacity-40 group-hover:opacity-70 transition-opacity">
+          <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-blue-400/70" />
+        </div>
+
+        <div className="mt-10 md:mt-16 lg:mt-20 space-y-5 md:space-y-6 flex-1">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            My <span className="text-blue-500">Stack.</span>
+          </h2>
+
+          <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-6xl">
+            I specialize in building fast, scalable, and accessible web applications using
+            {" "}
+            <strong className="text-white">Next.js</strong>,{" "}
+            <strong className="text-white">Tailwind CSS</strong>,{" "}
+            <strong className="text-white">TypeScript</strong>, and modern JavaScript.
+            Full-stack experience with the{" "}
+            <strong className="text-blue-400">MERN stack</strong>,{" "}
+            <strong className="text-blue-400">Supabase</strong>, secure authentication
+            (<strong>NextAuth</strong>, <strong>Supabase Auth</strong>, OAuth), clean architecture,
+            performance optimization, and contemporary UI/UX principles.
+          </p>
+        </div>
+
+        <ArrowUpRight className="absolute bottom-8 right-8 w-7 h-7 text-gray-500 group-hover:text-blue-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+      </div>
+
+      {/* Credentials Card - smaller side card */}
+      <div
+        data-aos="fade-up"
+        data-aos-delay="300"
+        className="md:col-span-3 group relative bg-gradient-to-br from-[#1A1A1A] to-[#111111] rounded-3xl p-6 md:p-8 border border-white/8 overflow-hidden hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-400 ease-out cursor-pointer flex flex-col justify-between"
+      >
+        <div className="flex justify-center py-8 md:py-10 opacity-70 group-hover:opacity-100 transition-opacity">
+          <BadgeCheck className="w-16 h-16 md:w-20 md:h-20 text-gray-500 group-hover:text-blue-400 transition-colors duration-300" />
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-gray-500 text-xs md:text-sm uppercase tracking-widest font-medium">
+            More about me
+          </p>
+          <h3 className="text-xl md:text-2xl font-semibold text-white">
+            Credentials
+          </h3>
+        </div>
+
+        <ArrowUpRight className="absolute bottom-6 right-6 w-6 h-6 text-gray-600 group-hover:text-blue-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+      </div>
+    </div>
       </main>
 
       {/* Footer (Shared Component) */}
-      <footer className="mt-24 text-center pb-12">
-        <div className="text-xl font-bold uppercase tracking-tighter mb-8 opacity-80">AHSAN BASHIR</div>
-        <div className="flex justify-center gap-8 text-gray-500 text-[10px] uppercase tracking-widest">
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/works">Works</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
-      </footer>
+     <footer className="mt-24 text-center pb-12 bg-[#0F0F0F] text-white">
+  {/* Footer Name / Brand */}
+  <div className="text-2xl md:text-3xl font-bold uppercase tracking-tighter mb-6 opacity-80">
+    AHSAN BASHIR
+  </div>
+
+  {/* Navigation Links */}
+  <nav aria-label="Footer Navigation">
+    <ul className="flex flex-wrap justify-center gap-8 text-gray-400 text-xs md:text-sm uppercase tracking-widest">
+      <li>
+        <Link 
+          href="/" 
+          className="hover:text-white transition-colors duration-200"
+        >
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link 
+          href="/about" 
+          className="hover:text-white transition-colors duration-200"
+        >
+          About
+        </Link>
+      </li>
+      <li>
+        <Link 
+          href="/works" 
+          className="hover:text-white transition-colors duration-200"
+        >
+          Works
+        </Link>
+      </li>
+      <li>
+        <Link 
+          href="/contact" 
+          className="hover:text-white transition-colors duration-200"
+        >
+          Contact
+        </Link>
+      </li>
+    </ul>
+  </nav>
+
+  {/* Optional: Copyright */}
+  <p className="mt-6 text-gray-500 text-[10px] md:text-xs">
+    &copy; {new Date().getFullYear()} AHSAN BASHIR. All rights reserved.
+  </p>
+</footer>
     </div>
     </>
   );

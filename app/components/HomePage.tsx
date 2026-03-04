@@ -294,9 +294,16 @@ export default function HomePage() {
 <Link href="/contact">
             <Sparkle className="absolute top-6 left-6 text-gray-700" size={32} />
             <div className="mt-12">
+             
               <h2 className="text-5xl font-bold leading-tight">
                 Let's <br /> work <span className="text-blue-500">together.</span>
               </h2>
+               <p className="mt-3">Have a project in mind?
+I build fast, scalable, and modern web applications using Next.js, TypeScript, and Tailwind CSS.
+
+From idea to deployment — I focus on clean code, performance, and great user experience.
+
+📩 Let’s connect and bring your vision to life.</p>
             </div>
             <ArrowUpRight className="ml-auto text-gray-700 group-hover:text-white transition" />
           </Link>
