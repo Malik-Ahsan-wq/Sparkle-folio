@@ -20,6 +20,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Ahsan Bashir" }],
   creator: "Ahsan Bashir",
   publisher: "Ahsan Bashir",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Ahsan Bashir",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -59,6 +65,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#6366f1" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
