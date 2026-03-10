@@ -311,7 +311,7 @@ From idea to deployment — I focus on clean code, performance, and great user e
           <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-white/5 group flex flex-col justify-between action-card">
             <div className="flex justify-center py-2 opacity-50">
               <Link href="/about">
-            <img className="w-50" src="/image (26).jpg" alt="" />
+            <img className="w-50" src="/Gemini_Generated_Image_albe2galbe2galbe.png" alt="" />
             </Link>
             </div>
             <div>

@@ -3,6 +3,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Sparkle ,User, Code, BadgeCheck, Sparkles} from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "About Ahsan Bashir | Full Stack MERN Developer",
+  description: "Learn about Ahsan Bashir, a Full Stack Developer with 1.5+ years of experience in MERN Stack, Next.js, Shopify Development. Specialized in building scalable web applications with MongoDB, Express.js, React.js, Node.js, and TypeScript.",
+  openGraph: {
+    title: "About Ahsan Bashir | Full Stack MERN Developer",
+    description: "Full Stack Developer specializing in MERN Stack, Next.js, and Shopify Development with 1.5+ years of professional experience.",
+    url: "https://ahsanbashir.com/about",
+  },
+};
 
 const about = () => {
   return (
