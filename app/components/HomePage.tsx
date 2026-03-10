@@ -175,21 +175,20 @@ export default function HomePage() {
 
       {/* Title */}
       <h2 className="text-3xl md:text-4xl font-bold mb-2 md:mb-4">
-        Full Stack Developer
+        Full-Stack & Shopify Developer
       </h2>
 
       {/* Description */}
       <p className="text-gray-400 leading-relaxed max-w-xl">
-        MERN + Next.js developer skilled in building dynamic, responsive, and scalable web applications with MongoDB, Supabase SQL, Express.js, React.js, and Node.js. Experienced in RESTful APIs, secure authentication, and clean UI with Tailwind CSS. Passionate about efficient, maintainable code and collaboration.
+        A versatile Full-Stack Developer with 1.5+ Years of professional experience specializing in MERN Stack, Next.js, Shopify Development, and Canva Design. Skilled in building modern, scalable, and high-performance web applications and e-commerce solutions, while also creating visually engaging designs and marketing assets.
       </p>
 
       {/* Buttons */}
      <div className="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
   {/* Resume Button - Primary with gradient & shine */}
   <a
-    href="/Ahsan-resume-black-theme (1).pdf"
-      download="Ahsan-Bashir-Resume.pdf" 
-  
+    href="/Ahsan-Bashir-Dev.pdf"
+    download="Ahsan-Bashir-Dev.pdf"
     rel="noopener noreferrer"
     className={`
       group relative inline-flex items-center justify-center gap-2
@@ -274,8 +273,8 @@ export default function HomePage() {
 
   {/* WhatsApp */}
   <a
-    href="public/Ahsan-resume-black-theme (1).pdf"
-      download="public/Ahsan-resume-black-theme (1).pdf"
+    href="/Ahsan-Bashir-Dev.pdf"
+    download="Ahsan-Bashir-Dev.pdf"
     className="w-16 h-16 rounded-full bg-[#1F1F1F] border border-white/5 
                flex items-center justify-center 
                hover:bg-white/10 hover:scale-110 transition duration-300"

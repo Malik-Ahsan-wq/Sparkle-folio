@@ -31,7 +31,7 @@ const about = () => {
               <div className="mt-8">
                 <h2 className="text-3xl font-bold mb-4 border-b border-gray-700 inline-block">Ahsan <span className='bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name'>Bashir</span></h2>
                 <p className="text-gray-400 leading-relaxed max-w-xl">
-                  I' am Next.js developer skilled in building dynamic, responsive, and scalable web applications with MongoDB, Supabase SQL, Express.js, React.js, and Node.js. Experienced in RESTful APIs, secure authentication, and clean UI with Tailwind CSS. Passionate about efficient, maintainable code and collaboration.
+                  A versatile Full-Stack Developer with 1.5+ Years of professional experience specializing in MERN Stack, Next.js, Shopify Development, and Canva Design. Proficient in MongoDB, Supabase SQL, Express.js, React.js, Node.js, Shopify, and experienced in RESTful APIs, secure authentication systems, responsive UI/UX, deployment, and e-commerce optimization.
                 </p>
               </div>
             </div>
@@ -57,13 +57,18 @@ const about = () => {
     <div className="space-y-6">
       <div>
         <p className="text-gray-500 text-sm mb-1">2024 - 2025</p>
-        <h4 className="text-lg font-bold text-white">Front End Developer, ESCASA</h4>
-        <p className="text-gray-400 text-xs">Built and maintained web apps with React, Next.js.</p>
+        <h4 className="text-lg font-bold text-white">Full-Stack Developer, websolave IT Company</h4>
+        <p className="text-gray-400 text-xs">Built full-stack applications using MERN Stack, integrated RESTful APIs, implemented secure authentication with JWT and OAuth, optimized database queries reducing response time by 20%.</p>
       </div>
       <div>
         <p className="text-gray-500 text-sm mb-1">2023 - 2024</p>
-        <h4 className="text-lg font-bold text-white">Front End Developer, Websolave</h4>
-        <p className="text-gray-400 text-xs">Developed full‑stack features and optimized performance.</p>
+        <h4 className="text-lg font-bold text-white">Front End Developer, ESCASA IT Company</h4>
+        <p className="text-gray-400 text-xs">Developed responsive frontend applications using React.js and Next.js, built modern UI components with Tailwind CSS and Bootstrap, improved application performance and scalability.</p>
+      </div>
+      <div>
+        <p className="text-gray-500 text-sm mb-1">2025 - Present</p>
+        <h4 className="text-lg font-bold text-white">Shopify & Canva Developer (Freelance)</h4>
+        <p className="text-gray-400 text-xs">Developed and customized Shopify stores, built custom sections and product pages, integrated payment gateways, optimized for SEO and performance, created marketing assets using Canva.</p>
       </div>
     </div>
   </div>
@@ -80,13 +85,13 @@ const about = () => {
     <div className="space-y-6">
       <div>
         <p className="text-gray-500 text-sm mb-1">2021 - 2022</p>
-        <h4 className="text-lg font-bold text-white">ICS with Computer Diploma</h4>
+        <h4 className="text-lg font-bold text-white">Mechanical Diploma</h4>
         <p className="text-gray-400 text-xs">VTI College</p>
       </div>
       <div>
         <p className="text-gray-500 text-sm mb-1">2020 - 2021</p>
-        <h4 className="text-lg font-bold text-white">Mechanical Diploma</h4>
-        <p className="text-gray-400 text-xs">Punjab</p>
+        <h4 className="text-lg font-bold text-white">ICS with Computer Diploma</h4>
+        <p className="text-gray-400 text-xs">Abu Anees College, Faisalabad</p>
       </div>
     </div>
   </div>
