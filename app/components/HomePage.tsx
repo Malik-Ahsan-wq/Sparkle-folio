@@ -4,7 +4,7 @@ import React, {useRef } from "react";
 import Link from "next/link";
 
 import Image from "next/image";
-import { ArrowUpRight, Sparkle, Download, Folder,Globe } from "lucide-react";
+import { ArrowUpRight, Sparkle, Download,FileText, Folder,Globe } from "lucide-react";
 import {  FaLinkedin, FaFileContract } from "react-icons/fa";
 import { MdEmail, } from "react-icons/md";
 
@@ -186,46 +186,67 @@ export default function HomePage() {
       {/* Buttons */}
      <div className="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
   {/* Resume Button - Primary with gradient & shine */}
+<a
+  href="/Ahsan.Dev.pdf"
+  download="/Ahsan.Dev.pdf"
+  rel="noopener noreferrer"
+  className={`
+    group relative inline-flex items-center justify-center gap-2
+    overflow-hidden rounded-full px-7 py-3.5
+    bg-gradient-to-r from-blue-600-to-cyan-500
+    text-white font-medium text-base
+    shadow-lg shadow-blue-700 hover:shadow-blue-500/40
+    transition-all duration-300 ease-out
+    hover:scale-[1.04] hover:shadow-xl
+    active:scale-95
+  `}
+>
+  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+
+  <Download size={18} className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+  <span className="relative">Resume</span>
+</a>
+
   <a
-    href="/Ahsan-Bashir-Dev.pdf"
-    download="Ahsan-Bashir-Dev.pdf"
-    rel="noopener noreferrer"
-    className={`
-      group relative inline-flex items-center justify-center gap-2
-      overflow-hidden rounded-full px-7 py-3.5
-      bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600
-      text-white font-medium text-base
-      shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40
-      transition-all duration-300 ease-out
-      hover:scale-[1.04] hover:shadow-xl
-      active:scale-95
-    `}
-  >
-    {/* Shine / gradient movement effect */}
-    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
-    
-    <Download size={18} className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-    <span className="relative">Resume</span>
-  </a>
+  href="/Ahsan.Dev.pdf"
+  rel="noopener noreferrer"
+  className={`
+    group relative inline-flex items-center justify-center gap-2
+    overflow-hidden rounded-full px-7 py-3.5
+    bg-gradient-to-r from-blue-600-to-cyan-500
+    text-white font-medium text-base
+    shadow-lg shadow-blue-500 hover:shadow-blue-500/40
+    transition-all duration-300 ease-out
+    hover:scale-[1.04] hover:shadow-xl
+    active:scale-95
+  `}
+>
+  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+
+  <FileText size={18} className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+  <span className="relative">Resume Review</span>
+</a>
 
   {/* Projects Button - Secondary with lift & border glow */}
   <a
-    href="/works"
-    className={`
-      group relative inline-flex items-center justify-center gap-2
-      overflow-hidden rounded-full px-7 py-3.5
-      bg-gray-800/70 backdrop-blur-sm border border-gray-700/70
-      text-gray-200 font-medium text-base
-      shadow-md shadow-black/30
-      transition-all duration-300 ease-out
-      hover:bg-gray-700/80 hover:border-indigo-500/50 hover:text-white
-      hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/20
-      active:translate-y-0 active:shadow-md
-    `}
-  >
-    <Folder size={18} className="transition-transform duration-300 group-hover:scale-110 group-hover:text-indigo-400" />
-    <span className="relative">Projects</span>
-  </a>
+  href="/works"
+  rel="noopener noreferrer"
+  className={`
+    group relative inline-flex items-center justify-center gap-2
+    overflow-hidden rounded-full px-7 py-3.5
+    bg-gradient-to-r from-blue-600-to-cyan-500
+    text-white font-medium text-base
+    shadow-lg shadow-blue-500 hover:shadow-blue-500/40
+    transition-all duration-300 ease-out
+    hover:scale-[1.04] hover:shadow-xl
+    active:scale-95
+  `}
+>
+  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+
+  <Folder size={18} className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+  <span className="relative">Projects</span>
+</a>
 </div>
     </div>
           </div>

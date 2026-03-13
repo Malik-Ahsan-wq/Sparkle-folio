@@ -103,19 +103,13 @@ const ContactPage = () => {
             <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-8">Social Info</h3>
             <div data-aos="fade-up" className="flex gap-4">
               <Suspense fallback={<div className="w-14 h-14 bg-[#1A1A1A] rounded-full border border-white/5 animate-pulse" />}>
-                <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
-                  <Instagram size={24} />
-                </a>
+            
               </Suspense>
               <Suspense fallback={<div className="w-14 h-14 bg-[#1A1A1A] rounded-full border border-white/5 animate-pulse" />}>
-                <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
-                  <UserCircle2 size={24} />
-                </a>
+          
               </Suspense>
               <Suspense fallback={<div className="w-14 h-14 bg-[#1A1A1A] rounded-full border border-white/5 animate-pulse" />}>
-                <a href="#" className="w-14 h-14 bg-[#1A1A1A] rounded-full flex items-center justify-center border border-white/5 hover:bg-white hover:text-black transition">
-                  <Linkedin size={24} />
-                </a>
+            
               </Suspense>
             </div>
           </section>
@@ -169,16 +163,15 @@ const ContactPage = () => {
 <button
   type="submit"
   disabled={loading}
-  className={`cursor-pointer
-    relative w-full flex items-center justify-center gap-2
-    bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600
-    text-white font-semibold py-4 rounded-xl
-    shadow-lg shadow-indigo-500/20
-    hover:scale-[1.03] hover:shadow-xl
-    active:scale-95
+  className={`
+    group relative md:w-full inline-flex items-center justify-center gap-2
+    overflow-hidden rounded-full px-7 py-3.5
+    bg-gradient-to-r from-blue-600-to-cyan-500
+    text-white font-medium text-base
+    shadow-lg shadow-blue-700 hover:shadow-blue-500/40
     transition-all duration-300 ease-out
-    disabled:opacity-50 disabled:cursor-not-allowed
-    overflow-hidden
+    hover:scale-[1.04] hover:shadow-xl
+    active:scale-95
   `}
 >
   {/* Animated Shine / Gradient */}

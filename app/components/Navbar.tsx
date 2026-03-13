@@ -67,8 +67,8 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* CTA */}
-            <Link
+           
+            {/* <Link
               href="/contact"
               className={`
                 relative inline-flex items-center justify-center gap-2
@@ -83,7 +83,7 @@ export default function Navbar() {
               `}
             >
               Let's Talk
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -157,14 +157,15 @@ export default function Navbar() {
           <Link
             href="/contact"
             className={`
-              mt-4 inline-flex justify-center rounded-full px-8 py-3.5 text-base font-medium
-              bg-gradient-to-b from-indigo-600/90 to-indigo-700
-              text-white shadow-lg shadow-indigo-500/20
-              transition-all duration-300
-              hover:from-indigo-500 hover:to-indigo-600 hover:shadow-indigo-500/30 hover:-translate-y-0.5
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111]
-              active:translate-y-0
-            `}
+    group relative inline-flex items-center justify-center gap-2
+    overflow-hidden rounded-full px-7 py-3.5
+    bg-gradient-to-r from-blue-600-to-cyan-500
+    text-white font-medium text-base
+    shadow-lg shadow-blue-700 hover:shadow-blue-500/40
+    transition-all duration-300 ease-out
+    hover:scale-[1.04] hover:shadow-xl
+    active:scale-95
+  `}
             onClick={() => setIsOpen(false)}
           >
             Let's Talk
