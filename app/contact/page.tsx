@@ -100,7 +100,7 @@ const ContactPage = () => {
 
           {/* Social Info */}
           <section data-aos="fade-up">
-            <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-8">Social Info</h3>
+        
             <div data-aos="fade-up" className="flex gap-4">
               <Suspense fallback={<div className="w-14 h-14 bg-[#1A1A1A] rounded-full border border-white/5 animate-pulse" />}>
             
@@ -171,7 +171,7 @@ const ContactPage = () => {
     shadow-lg shadow-blue-700 hover:shadow-blue-500/40
     transition-all duration-300 ease-out
     hover:scale-[1.04] hover:shadow-xl
-    active:scale-95
+    active:scale-95 cursor-pointer
   `}
 >
   {/* Animated Shine / Gradient */}
