@@ -56,62 +56,208 @@ export async function POST(request: Request) {
       to: 'ahsanmalikking57@gmail.com',
       replyTo: sanitizedEmail,
       subject: `New Contact: ${sanitizedSubject}`,
-      html: `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="UTF-8">
-            <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
-              .container { max-width: 600px; margin: 0 auto; padding: 20px; background: #f9fafb; }
-              .email-wrapper { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-              .header { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: white; padding: 30px 20px; text-align: center; }
-              .header h2 { margin: 0; font-size: 24px; }
-              .content { padding: 30px 20px; }
-              .field { margin-bottom: 20px; }
-              .label { font-weight: 600; color: #6366f1; display: block; margin-bottom: 5px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-              .value { color: #333; font-size: 16px; word-break: break-word; }
-              .message-box { background: #f3f4f6; padding: 15px; border-left: 4px solid #6366f1; border-radius: 4px; margin-top: 10px; }
-              .footer { background: #f9fafb; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; border-top: 1px solid #e5e7eb; }
-              .divider { height: 1px; background: #e5e7eb; margin: 20px 0; }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="email-wrapper">
-                <div class="header">
-                  <h2>📧 New Contact Form Submission</h2>
-                </div>
-                <div class="content">
-                  <div class="field">
-                    <span class="label">From:</span>
-                    <div class="value">${sanitizedName}</div>
-                  </div>
-                  <div class="field">
-                    <span class="label">Email:</span>
-                    <div class="value"><a href="mailto:${sanitizedEmail}">${sanitizedEmail}</a></div>
-                  </div>
-                  <div class="field">
-                    <span class="label">Subject:</span>
-                    <div class="value">${sanitizedSubject}</div>
-                  </div>
-                  <div class="divider"></div>
-                  <div class="field">
-                    <span class="label">Message:</span>
-                    <div class="message-box">
-                      ${sanitizedMessage.replace(/\n/g, '<br>')}
-                    </div>
-                  </div>
-                </div>
-                <div class="footer">
-                  <p>This email was sent from your portfolio contact form</p>
-                  <p>Portfolio: <strong>ahsanmalik.xyz</strong></p>
-                </div>
-              </div>
-            </div>
-          </body>
-        </html>
-      `,
+   html: `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Contact Form Submission</title>
+
+  <style type="text/css">
+    /* Reset */
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fc;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .email-container {
+      max-width: 640px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 48px 32px 40px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .header .subtitle {
+      margin: 12px 0 0;
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 40px 36px 32px;
+    }
+
+    .field {
+      margin-bottom: 28px;
+    }
+
+    .label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .value {
+      font-size: 16px;
+      color: #111827;
+      word-break: break-word;
+    }
+
+    .email-link {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .email-link:hover {
+      text-decoration: underline;
+    }
+
+    .message-container {
+      background-color: #f8fafc;
+      border-radius: 8px;
+      padding: 24px;
+      border-left: 4px solid #6366f1;
+      margin: 16px 0 32px;
+      font-size: 15px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .divider {
+      height: 1px;
+      background-color: #e5e7eb;
+      margin: 32px 0;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #6b7280;
+      text-align: center;
+      margin: 24px 0 0;
+    }
+
+    .footer {
+      background-color: #f8fafc;
+      padding: 32px 36px;
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .footer a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body { background-color: #0f172a; color: #e2e8f0; }
+      .email-container { background-color: #1e293b; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+      .header { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+      .content { color: #e2e8f0; }
+      .label { color: #94a3b8; }
+      .value { color: #f1f5f9; }
+      .message-container { background-color: #334155; border-left-color: #818cf8; color: #e2e8f0; }
+      .footer { background-color: #0f172a; border-top-color: #334155; color: #94a3b8; }
+      .divider { background-color: #334155; }
+    }
+
+    @media only screen and (max-width: 480px) {
+      .content, .footer { padding-left: 24px !important; padding-right: 24px !important; }
+      .header { padding: 40px 24px 32px !important; }
+      .header h1 { font-size: 24px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+
+    <div class="header">
+      <h1>New Contact Message</h1>
+      <div class="subtitle">Portfolio Contact Form • ahsanmalik.xyz</div>
+    </div>
+
+    <div class="content">
+
+      <div class="field">
+        <span class="label">Name</span>
+        <div class="value">${sanitizedName}</div>
+      </div>
+
+      <div class="field">
+        <span class="label">Email Address</span>
+        <div class="value">
+          <a href="mailto:${sanitizedEmail}" class="email-link">${sanitizedEmail}</a>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Subject</span>
+        <div class="value">${sanitizedSubject}</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field">
+        <span class="label">Message</span>
+        <div class="message-container">
+          ${sanitizedMessage.replace(/\n/g, '<br>')}
+        </div>
+      </div>
+
+      <div class="meta">
+        Received on ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' })}
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p>This message was submitted via your portfolio contact form.</p>
+      <p><strong>ahsanmalik.xyz</strong> • <a href="https://ahsanmalik.xyz">Visit Portfolio</a></p>
+      <p style="margin-top: 16px; font-size: 12px;">
+        Please reply directly to this email to respond to the sender.
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
+`,
     });
 
     // Check for errors
