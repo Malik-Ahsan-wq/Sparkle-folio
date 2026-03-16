@@ -52,7 +52,7 @@ export async function POST(request: Request) {
 
     // Send email via Resend using verified domain
     const emailResponse = await resend.emails.send({
-      from: 'noreply@ahsanmalik.xyz', // Use Resend's verified domain
+      from: 'Contact Form <noreply@ahsanmalik.xyz>',
       to: 'ahsanmalikking57@gmail.com',
       replyTo: sanitizedEmail,
       subject: `New Contact: ${sanitizedSubject}`,
@@ -117,8 +117,9 @@ export async function POST(request: Request) {
     // Check for errors
     if (emailResponse.error) {
       console.error('Resend Error:', emailResponse.error);
+      console.error('Full response:', JSON.stringify(emailResponse));
       return NextResponse.json(
-        { error: 'Failed to send email. Please try again.' },
+        { error: `Failed to send email: ${emailResponse.error.message || 'Unknown error'}` },
         { status: 500 }
       );
     }
