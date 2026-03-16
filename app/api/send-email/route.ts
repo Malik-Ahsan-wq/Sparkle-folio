@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     // Send email via Resend using verified domain
     const emailResponse = await resend.emails.send({
       from: 'noreply@ahsanmalik.xyz', // Use Resend's verified domain
-      to: 'mahsanraza3222@gmail.com',
+      to: 'ahsanmalikking57@gmail.com',
       replyTo: sanitizedEmail,
       subject: `New Contact: ${sanitizedSubject}`,
       html: `
