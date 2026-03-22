@@ -72,7 +72,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased pt-12 sm:pt-14`}
       >
         <ClientProviders>{children}</ClientProviders>
       </body>

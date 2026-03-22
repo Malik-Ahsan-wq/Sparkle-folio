@@ -175,7 +175,7 @@ export default function HomePage() {
 
       {/* Title */}
       <h2 className="text-3xl md:text-4xl font-bold mb-2 md:mb-4">
-        Full-Stack & Shopify Developer
+        Full-Stack <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name mx-2 text-5xl font-bold">&</span>Shopify Developer
       </h2>
 
       {/* Description */}

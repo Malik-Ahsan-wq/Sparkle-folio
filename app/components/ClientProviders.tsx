@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import AnnouncementBar from './AnnouncementBar';
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -12,5 +13,10 @@ export default function ClientProviders({ children }: { children: React.ReactNod
       offset: 40,
     });
   }, []);
-  return children as React.ReactElement;
+  return (
+    <>
+      <AnnouncementBar />
+      {children}
+    </>
+  ) as React.ReactElement;
 }
