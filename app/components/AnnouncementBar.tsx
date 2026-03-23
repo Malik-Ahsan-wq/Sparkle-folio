@@ -245,7 +245,7 @@ export default function AnnouncementBar() {
         @media (max-width: 600px) {
           .bar-inner {
             height: 40px;
-            padding: 0 12px;
+            padding: 20 12px;
             gap: 8px;
           }
           .badge { display: none; }
