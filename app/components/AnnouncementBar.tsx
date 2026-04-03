@@ -285,26 +285,26 @@ export default function AnnouncementBar() {
             </span>
             <span className="message-text">
               <span className="full-message">
-                <strong>Professional Tools</strong> — QR Generator, SEO Analyzer & Bio Builder
+                <strong>Professional Tools</strong> — Resume Analyzer, Ats Score and OverAll score
               </span>
               <span className="short-message">
-                <strong>Pro Tools</strong> — QR · SEO · Bio
+                <strong>Pro Tools</strong> — resume analyzer · Ats· overall score
               </span>
             </span>
             <div className="tools-chips" aria-hidden="true">
-              <span className="chip">QR Gen</span>
-              <span className="chip">SEO</span>
-              <span className="chip">Bio</span>
+              <span className="chip">Resume Analyzer</span>
+              <span className="chip">ATS Score</span>
+              <span className="chip">Overall Score</span>
             </div>
           </div>
 
           {/* Right: CTA + divider + close */}
           <Link
-            href="https://tools.websolave.com/"
+            href="https://resufix.ahsanmalik.xyz/"
             target="_blank"
             rel="noopener noreferrer"
             className="cta-link"
-            aria-label="Visit tools.websolave.com (opens in new tab)"
+            aria-label="Visit Resufix.ahsanmalik.xyz(opens in new tab)"
           >
             <span>Visit Now</span>
             <ArrowUpRight size={13} />
