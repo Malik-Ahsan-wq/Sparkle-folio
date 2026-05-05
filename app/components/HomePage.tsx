@@ -130,9 +130,9 @@ export default function HomePage() {
       ref={container}
    className="
   pt-24 md:pt-32 min-h-screen text-white font-sans bg-[#0F0F0F]
-  bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),
+  bg-[linear-linear(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),
       linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)]
-  bg-[size:40px_40px]
+  bg-size-[40px_40px]
   "
 >
       {/* Navigation – can be animated later if needed */}
@@ -143,7 +143,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-start">
           {/* Profile Image */}
           <div className="bg-[#1A1A1A] rounded-3xl p-6 border border-white/5 profile-img-container">
-            <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-b from-gray-700 to-gray-900">
+            <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-linear-to-b from-gray-700 to-gray-900">
               <Image
                 src="/Gemini_Generated_Image_ke0v4eke0v4eke0v (1).png"
                 alt="Ahsan Bashir"
@@ -156,11 +156,12 @@ export default function HomePage() {
 
           {/* Self Summary */}
           <div className="md:col-span-2 flex flex-col justify-center gap-6">
-            <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="flex items-center justify-center gap-4 mb-8 ">
+
               <Sparkle className="text-gray-500 hero-sparkle" size={32} />
-              <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter text-center hero-name">
+              <h1 className="text-5xl md:text-7xl  font-bold uppercase tracking-tighter text-center hero-name">
                 Ahsan{" "}
-                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name">
+                <span className="bg-linear-to-r  from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name">
                   Bashir
                 </span>
               </h1>
@@ -175,7 +176,7 @@ export default function HomePage() {
 
       {/* Title */}
       <h2 className="text-3xl md:text-4xl font-bold mb-2 md:mb-4">
-        Full-Stack <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name mx-2 text-5xl font-bold">&</span>Shopify Developer
+        Full-Stack <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name mx-2 text-5xl font-bold">&</span>Shopify Developer
       </h2>
 
       {/* Description */}
@@ -185,7 +186,7 @@ export default function HomePage() {
 
       {/* Buttons */}
      <div className="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
-  {/* Resume Button - Primary with gradient & shine */}
+  {/* Resume Button - Primary with linear & shine */}
 <a
   href="/Ahsan.Dev.pdf"
   download="/Ahsan.Dev.pdf"
@@ -193,7 +194,7 @@ export default function HomePage() {
   className={`
     group relative inline-flex items-center justify-center gap-2
     overflow-hidden rounded-full px-7 py-3.5
-    bg-gradient-to-r from-blue-600-to-cyan-500
+    bg-linear-to-r from-blue-600-to-cyan-500
     text-white font-medium text-base
     shadow-lg shadow-blue-700 hover:shadow-blue-500/40
     transition-all duration-300 ease-out
@@ -201,7 +202,7 @@ export default function HomePage() {
     active:scale-95
   `}
 >
-  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
 
   <Download size={18} className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
   <span className="relative">Resume</span>
@@ -213,7 +214,7 @@ export default function HomePage() {
   className={`
     group relative inline-flex items-center justify-center gap-2
     overflow-hidden rounded-full px-7 py-3.5
-    bg-gradient-to-r from-blue-600-to-cyan-500
+    bg-linear-to-r from-blue-600-to-cyan-500
     text-white font-medium text-base
     shadow-lg shadow-blue-500 hover:shadow-blue-500/40
     transition-all duration-300 ease-out
@@ -221,7 +222,7 @@ export default function HomePage() {
     active:scale-95
   `}
 >
-  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
 
   <FileText size={18} className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
   <span className="relative">Resume Review</span>
@@ -234,7 +235,7 @@ export default function HomePage() {
   className={`
     group relative inline-flex items-center justify-center gap-2
     overflow-hidden rounded-full px-7 py-3.5
-    bg-gradient-to-r from-blue-600-to-cyan-500
+    bg-linear-to-r from-blue-600-to-cyan-500
     text-white font-medium text-base
     shadow-lg shadow-blue-500 hover:shadow-blue-500/40
     transition-all duration-300 ease-out
@@ -242,7 +243,7 @@ export default function HomePage() {
     active:scale-95
   `}
 >
-  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
 
   <Folder size={18} className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
   <span className="relative">Projects</span>
