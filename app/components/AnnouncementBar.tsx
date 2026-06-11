@@ -3,6 +3,8 @@
 import { X, ArrowUpRight, Sparkles, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { SiShopify, SiWoocommerce, SiZapier, SiSlack, SiInstagram, SiFacebook } from "react-icons/si";
+import { MessageCircle } from "lucide-react";
 
 export default function AnnouncementBar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -283,24 +285,23 @@ export default function AnnouncementBar() {
             <span className="message-icon" aria-hidden="true">
               <Zap size={14} fill="currentColor" />
             </span>
-            <span className="message-text">
-              <span className="full-message">
-                <strong>Professional Tools</strong> — Resume Analyzer, Ats Score and OverAll score
-              </span>
-              <span className="short-message">
-                <strong>Pro Tools</strong> — resume analyzer · Ats· overall score
-              </span>
-            </span>
-            <div className="tools-chips" aria-hidden="true">
-              <span className="chip">Resume Analyzer</span>
-              <span className="chip">ATS Score</span>
-              <span className="chip">Overall Score</span>
-            </div>
+        <span className="message-text">
+  <span className="flex items-center gap-2">
+    <SiShopify className="h-6 w-6" />
+    <SiWoocommerce className="h-6 w-6" />
+    <SiZapier className="h-6 w-6" />
+    <SiSlack className="h-6 w-6" />
+    <MessageCircle className="h-6 w-6" /> {/* WhatsApp */}
+    <SiInstagram className="h-6 w-6" />
+    <SiFacebook className="h-6 w-6" />
+  </span>
+</span>
+           
           </div>
 
           {/* Right: CTA + divider + close */}
           <Link
-            href="https://resufix.ahsanmalik.xyz/"
+            href="https://fetchply.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="cta-link"

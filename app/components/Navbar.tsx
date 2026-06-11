@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <>
    
-    <nav className="fixed top-12 sm:top-14 z-[9999] w-full border-b border-white/5 bg-[#0F0F0F] backdrop-blur-xl">
+    <nav className="fixed top-12 sm:top-14 z-9999 w-full border-b border-white/5 bg-[#0F0F0F] backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Logo */}
@@ -159,7 +159,7 @@ export default function Navbar() {
             className={`
     group relative inline-flex items-center justify-center gap-2
     overflow-hidden rounded-full px-7 py-3.5
-    bg-gradient-to-r from-blue-600-to-cyan-500
+    bg-linear-to-r from-blue-600-to-cyan-500
     text-white font-medium text-base
     shadow-lg shadow-blue-700 hover:shadow-blue-500/40
     transition-all duration-300 ease-out
