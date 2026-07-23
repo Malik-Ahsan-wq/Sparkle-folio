@@ -17,14 +17,20 @@ import Navbar from "./Navbar";
 gsap.registerPlugin(ScrollTrigger);
 
 const brands = [
-  "Next js",
-  "Tailwind css",
-  "supabase",
-  "monogdb ",
-  "React js",
-  "Express js",
-  "Node js",
+  "Next.js",
+  "Tailwind CSS",
+  "Supabase",
+  "MongoDB",
+  "React.js",
+  "Express.js",
+  "Node.js",
   "MERN Stack",
+  "Shopify",
+  "TypeScript",
+  "BullMQ",
+  "Redis",
+  "Drizzle ORM",
+  "Zod",
 ];
 
 export default function HomePage() {
@@ -176,12 +182,12 @@ export default function HomePage() {
 
       {/* Title */}
       <h2 className="text-3xl md:text-4xl font-bold mb-2 md:mb-4">
-        Full-Stack <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name mx-2 text-5xl font-bold">&</span>Shopify Developer
+        Full-Stack <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name mx-2 text-5xl">&</span> Shopify Developer
       </h2>
 
       {/* Description */}
       <p className="text-gray-400 leading-relaxed max-w-xl">
-        A versatile Full-Stack Developer with 1.5+ Years of professional experience specializing in MERN Stack, Next.js, Shopify Development, and Canva Design. Skilled in building modern, scalable, and high-performance web applications and e-commerce solutions, while also creating visually engaging designs and marketing assets.
+        A versatile Full-Stack Developer with 2+ Years of professional experience specializing in MERN Stack, Next.js, Shopify Development, and Canva Design. Skilled in building modern, scalable, and high-performance web applications and e-commerce solutions, while also creating visually engaging designs and marketing assets.
       </p>
 
       {/* Buttons */}

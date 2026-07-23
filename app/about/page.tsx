@@ -6,11 +6,11 @@ import Navbar from '../components/Navbar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "About Ahsan Bashir | Full Stack MERN Developer",
-  description: "Learn about Ahsan Bashir, a Full Stack Developer with 1.5+ years of experience in MERN Stack, Next.js, Shopify Development. Specialized in building scalable web applications with MongoDB, Express.js, React.js, Node.js, and TypeScript.",
+  title: "About Ahsan Bashir | Full-Stack & Shopify Developer",
+  description: "Learn about Ahsan Bashir, a Full-Stack & Shopify Developer with 2+ years of experience in MERN Stack, Next.js, Shopify Development. Specialized in building scalable web applications with MongoDB, Supabase, Express.js, React.js, Node.js, and TypeScript.",
   openGraph: {
-    title: "About Ahsan Bashir | Full Stack MERN Developer",
-    description: "Full Stack Developer specializing in MERN Stack, Next.js, and Shopify Development with 1.5+ years of professional experience.",
+    title: "About Ahsan Bashir | Full-Stack & Shopify Developer",
+    description: "Full-Stack & Shopify Developer specializing in MERN Stack, Next.js, and Shopify Development with 2+ years of professional experience.",
     url: "https://ahsanbashir.com/about",
   },
 };
@@ -42,7 +42,7 @@ const about = () => {
               <div className="mt-8">
                 <h2 className="text-3xl font-bold mb-4 border-b border-gray-700 inline-block">Ahsan <span className='bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-bold hero-name'>Bashir</span></h2>
                 <p className="text-gray-400 leading-relaxed max-w-xl">
-                  A versatile Full-Stack Developer with 1.5+ Years of professional experience specializing in MERN Stack, Next.js, Shopify Development, and Canva Design. Proficient in MongoDB, Supabase SQL, Express.js, React.js, Node.js, Shopify, and experienced in RESTful APIs, secure authentication systems, responsive UI/UX, deployment, and e-commerce optimization.
+                  A versatile Full-Stack & Shopify Developer with 2+ Years of professional experience specializing in MERN Stack, Next.js, Shopify Development, and Canva Design. Proficient in MongoDB, Supabase SQL, Express.js, React.js, Node.js, Shopify, and experienced in RESTful APIs, secure authentication systems, responsive UI/UX, deployment, and e-commerce optimization. I excel in collaborative, Agile environments delivering clean, efficient code and visually appealing designs.
                 </p>
               </div>
             </div>
@@ -67,19 +67,24 @@ const about = () => {
 
     <div className="space-y-6">
       <div>
-        <p className="text-gray-500 text-sm mb-1">2024 - 2025</p>
-        <h4 className="text-lg font-bold text-white">Full-Stack Developer, websolave IT Company</h4>
-        <p className="text-gray-400 text-xs">Built full-stack applications using MERN Stack, integrated RESTful APIs, implemented secure authentication with JWT and OAuth, optimized database queries reducing response time by 20%.</p>
+        <p className="text-gray-500 text-sm mb-1">03/2026 – Present · USA, Florida, Lakeland</p>
+        <h4 className="text-lg font-bold text-white">Full-Stack Developer — Inferasoft IT Company</h4>
+        <p className="text-gray-400 text-xs">Developed and customized web apps & PWAs for clients. Integrated Paddle, Careem.io and other payment methods. Optimized eCommerce stores for performance & SEO. Managed deployment, store launch, and post-launch support. Created marketing assets using Canva.</p>
       </div>
       <div>
-        <p className="text-gray-500 text-sm mb-1">2023 - 2024</p>
-        <h4 className="text-lg font-bold text-white">Front End Developer, ESCASA IT Company</h4>
-        <p className="text-gray-400 text-xs">Developed responsive frontend applications using React.js and Next.js, built modern UI components with Tailwind CSS and Bootstrap, improved application performance and scalability.</p>
+        <p className="text-gray-500 text-sm mb-1">11/2025 – 03/2026 · GM Abad, Faisalabad</p>
+        <h4 className="text-lg font-bold text-white">Full-Stack & Shopify Developer — websolave IT Company</h4>
+        <p className="text-gray-400 text-xs">Built full-stack apps using MongoDB, Supabase, Express.js, React.js, Node.js. Developed & customized Shopify stores, integrated payment gateways & shipping. Implemented JWT, OAuth, BullMQ job queues, Redis, Cron Jobs. Optimized DB queries reducing response time by 20%. Deployed via Vercel & Netlify with CI/CD pipelines.</p>
       </div>
       <div>
-        <p className="text-gray-500 text-sm mb-1">2025 - Present</p>
+        <p className="text-gray-500 text-sm mb-1">2024 – 2025 · Canal Road, Faisalabad</p>
+        <h4 className="text-lg font-bold text-white">Front-End Developer — ESCASA IT Company</h4>
+        <p className="text-gray-400 text-xs">Developed responsive frontend apps using React.js & Next.js. Built modern UI with Tailwind CSS & Bootstrap. Integrated frontend with backend APIs. Managed Vercel deployments and build optimizations.</p>
+      </div>
+      <div>
+        <p className="text-gray-500 text-sm mb-1">2025 – Present · Freelance</p>
         <h4 className="text-lg font-bold text-white">Shopify & Canva Developer (Freelance)</h4>
-        <p className="text-gray-400 text-xs">Developed and customized Shopify stores, built custom sections and product pages, integrated payment gateways, optimized for SEO and performance, created marketing assets using Canva.</p>
+        <p className="text-gray-400 text-xs">Developed & customized Shopify stores and themes. Built custom sections, product pages, and collection layouts. Integrated payment gateways & shipping. Optimized for SEO & performance. Created marketing banners, posters, and visual assets using Canva.</p>
       </div>
     </div>
   </div>
@@ -95,13 +100,23 @@ const about = () => {
 
     <div className="space-y-6">
       <div>
-        <p className="text-gray-500 text-sm mb-1">2021 - 2022</p>
+        <p className="text-gray-500 text-sm mb-1">2023 – 2024</p>
+        <h4 className="text-lg font-bold text-white">Computer Diploma</h4>
+        <p className="text-gray-400 text-xs">Chishti College, Faisalabad</p>
+      </div>
+      <div>
+        <p className="text-gray-500 text-sm mb-1">2023 – 2024</p>
+        <h4 className="text-lg font-bold text-white">Web Development Course</h4>
+        <p className="text-gray-400 text-xs">Websolave Company, Faisalabad</p>
+      </div>
+      <div>
+        <p className="text-gray-500 text-sm mb-1">2021 – 2022</p>
         <h4 className="text-lg font-bold text-white">Mechanical Diploma</h4>
         <p className="text-gray-400 text-xs">VTI College</p>
       </div>
       <div>
-        <p className="text-gray-500 text-sm mb-1">2020 - 2021</p>
-        <h4 className="text-lg font-bold text-white">ICS with Computer Diploma</h4>
+        <p className="text-gray-500 text-sm mb-1">2020 – 2021</p>
+        <h4 className="text-lg font-bold text-white">ICS (Computer Science)</h4>
         <p className="text-gray-400 text-xs">Abu Anees College, Faisalabad</p>
       </div>
     </div>
@@ -149,16 +164,16 @@ const about = () => {
           </h2>
 
           <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-6xl">
-            I specialize in building fast, scalable, and accessible web applications using
-            {" "}
+            I specialize in building fast, scalable, and accessible web applications using{" "}
             <strong className="text-white">Next.js</strong>,{" "}
             <strong className="text-white">Tailwind CSS</strong>,{" "}
             <strong className="text-white">TypeScript</strong>, and modern JavaScript.
             Full-stack experience with the{" "}
             <strong className="text-blue-400">MERN stack</strong>,{" "}
-            <strong className="text-blue-400">Supabase</strong>, secure authentication
-            (<strong>NextAuth</strong>, <strong>Supabase Auth</strong>, OAuth), clean architecture,
-            performance optimization, and contemporary UI/UX principles.
+            <strong className="text-blue-400">Supabase SQL</strong>, secure authentication
+            (<strong>NextAuth</strong>, <strong>Supabase Auth</strong>, <strong>Firebase Auth</strong>, OAuth 2.0),
+            job queues with <strong className="text-blue-400">BullMQ & Redis</strong>,
+            Shopify theme & store development, Canva design, and CI/CD deployment via Vercel & Netlify.
           </p>
         </div>
 

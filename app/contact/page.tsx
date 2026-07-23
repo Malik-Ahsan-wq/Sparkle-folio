@@ -69,7 +69,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Mail Us</p>
-                  <p className="text-sm text-gray-300">ahsanmalikking57@gmail.com</p>
+                  <p className="text-sm text-gray-300">mahsanraza3222@gmail.com</p>
               
                 </div>
               </div>
@@ -81,7 +81,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Contact Us</p>
-                  <p className="text-sm text-gray-300">0327 6227156</p>
+                  <p className="text-sm text-gray-300">03276227156</p>
                 </div>
               </div>
 
@@ -92,7 +92,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">Location</p>
-                  <p className="text-sm text-gray-300">Pakistan, Punjab</p>
+                  <p className="text-sm text-gray-300">GM Abad, Faisalabad, Pakistan</p>
                 </div>
               </div>
             </div>
