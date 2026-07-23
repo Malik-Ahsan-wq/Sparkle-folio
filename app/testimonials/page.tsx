@@ -44,7 +44,7 @@ const testimonials: Testimonial[] = [
     company: "Bloom Cosmetics",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80",
     rating: 5,
-    text: "The new e-commerce experience is stunning across devices and delivered a 47% uplift in conversions within the first month. Ahsan’s work is top-tier.",
+    text: "The new e-commerce experience is stunning across devices and delivered a 47% uplift in conversions within the first month. Ahsan's work is top-tier.",
     service: "Next.js E-commerce & Shopify Integration",
   },
   {
@@ -109,36 +109,35 @@ export default function TestimonialsSection() {
     <>
       <Navbar />
 
-      <section
-        ref={sectionRef}
-        className="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-gradient-to-b from-gray-950 via-black to-gray-950"
-      >
-        {/* Subtle background */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,theme(colors.indigo.950/0.4),transparent_40%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,theme(colors.purple.950/0.3),transparent_45%)]" />
+      <div ref={sectionRef} className="pt-[68px] min-h-screen bg-[#080808] text-white dot-grid">
+
+        {/* Ambient blobs */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+          <div className="absolute top-[5%] left-[-5%] w-[450px] h-[450px] rounded-full bg-purple-600/7 blur-[110px]" />
+          <div className="absolute bottom-[15%] right-[-5%] w-[350px] h-[350px] rounded-full bg-indigo-600/6 blur-[100px]" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+        <main className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-24 md:py-32 lg:py-40">
+
           {/* Header */}
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          <div className="mx-auto max-w-3xl text-center mb-16 md:mb-20">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white" style={{ fontFamily: "var(--font-syne)" }}>
               Trusted by <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">forward-thinking</span> teams
             </h2>
             <p className="mt-6 text-lg md:text-xl text-gray-400 leading-relaxed">
-              Real results from real clients — hear what it’s like to work together.
+              Real results from real clients — hear what it&apos;s like to work together.
             </p>
           </div>
 
           {/* Testimonials Grid */}
-          <div className="mt-16 md:mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.name}
                 ref={(el) => {
                   if (el) cardsRef.current[index] = el;
                 }}
-                className="group relative rounded-2xl bg-gradient-to-b from-gray-900/70 to-gray-950/70 p-8 shadow-2xl shadow-black/30 border border-gray-800/50 transition-all duration-400 hover:border-indigo-600/40 hover:shadow-indigo-900/20 backdrop-blur-sm"
+                className="group relative rounded-2xl glass-card p-8 transition-all duration-400"
               >
                 <Quote className="absolute -left-2 -top-5 h-16 w-16 text-indigo-600/10" />
 
@@ -154,7 +153,7 @@ export default function TestimonialsSection() {
 
                 {/* Quote */}
                 <blockquote className="text-gray-200 text-lg leading-relaxed mb-8 font-light">
-                  “{testimonial.text}”
+                  &ldquo;{testimonial.text}&rdquo;
                 </blockquote>
 
                 {/* Service */}
@@ -176,7 +175,7 @@ export default function TestimonialsSection() {
                       {testimonial.name}
                     </div>
                     <div className="text-sm text-gray-400 mt-0.5">
-                      {testimonial.role} • {testimonial.company}
+                      {testimonial.role} &bull; {testimonial.company}
                     </div>
                   </div>
                 </div>
@@ -186,41 +185,45 @@ export default function TestimonialsSection() {
 
           {/* CTA */}
           <div className="mt-20 lg:mt-28 text-center pb-10">
-          
-          <a
-  href="/Ahsan.Dev.pdf"
-  download="/Ahsan.Dev.pdf"
-  rel="noopener noreferrer"
-  className={`
-    group relative inline-flex items-center justify-center gap-2
-    overflow-hidden rounded-full px-7 py-3.5
-    bg-gradient-to-r from-blue-600-to-cyan-500
-    text-white font-medium text-base
-    shadow-lg shadow-blue-700 hover:shadow-blue-500/40
-    transition-all duration-300 ease-out
-    hover:scale-[1.04] hover:shadow-xl
-    active:scale-95
-  `}
->
-  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
-
-  Let's Start  Projects
-</a>
+            <a
+              href="/Ahsan.Dev.pdf"
+              download
+              rel="noopener noreferrer"
+              className="
+                group relative inline-flex items-center justify-center gap-2
+                overflow-hidden rounded-full px-7 py-3.5
+                bg-indigo-600 hover:bg-indigo-500
+                text-white font-semibold text-base
+                shadow-lg shadow-indigo-700/30 hover:shadow-indigo-500/40
+                transition-all duration-300 ease-out
+                hover:scale-[1.04] hover:shadow-xl
+                active:scale-95
+              "
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+              Let&apos;s Start Projects
+            </a>
           </div>
-        </div>
-          {/* Footer */}
-       <footer className="mt-24 text-center pb-12">
-        <div className="text-xl font-bold uppercase tracking-tighter text-white mb-8 opacity-80">AHSAN BASHIR</div>
-        <div className="flex justify-center gap-8 text-gray-500 text-[10px] uppercase tracking-widest">
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/works">Works</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
-      </footer>
-      </section>
 
-    
+          {/* Footer */}
+          <footer className="mt-16 text-center">
+            <div className="text-lg font-bold uppercase tracking-widest mb-5 gradient-text" style={{ fontFamily: "var(--font-syne)" }}>
+              AHSAN BASHIR
+            </div>
+            <nav className="flex justify-center gap-8 text-gray-600 text-[11px] uppercase tracking-widest" style={{ fontFamily: "var(--font-mono)" }}>
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <Link href="/about" className="hover:text-white transition-colors">About</Link>
+              <Link href="/works" className="hover:text-white transition-colors">Works</Link>
+              <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+              <Link href="/testimonials" className="hover:text-white transition-colors">Testimonials</Link>
+            </nav>
+            <p className="mt-5 text-gray-700 text-[10px]" style={{ fontFamily: "var(--font-mono)" }}>
+              &copy; {new Date().getFullYear()} Ahsan Bashir. All rights reserved.
+            </p>
+          </footer>
+
+        </main>
+      </div>
     </>
   );
 }
