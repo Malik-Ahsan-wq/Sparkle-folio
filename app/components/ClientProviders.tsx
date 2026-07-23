@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import AnnouncementBar from './AnnouncementBar';
 import SplashCursor from './SplashCursor';
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
@@ -17,7 +16,6 @@ export default function ClientProviders({ children }: { children: React.ReactNod
   return (
     <>
       <SplashCursor />
-      <AnnouncementBar />
       {children}
     </>
   ) as React.ReactElement;

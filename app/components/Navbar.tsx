@@ -1,178 +1,279 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, Home, User, Folder, MessageSquare, Mail } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-const navItems = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "About", href: "/about", icon: User },
-  { label: "Works", href: "/works", icon: Folder },
-  { label: "Testimonials", href: "/testimonials", icon: MessageSquare },
-  { label: "Contact", href: "/contact", icon: Mail },
+const navLinks = [
+  { label: "Home",         href: "/" },
+  { label: "About",        href: "/about" },
+  { label: "Works",        href: "/works" },
+  { label: "Testimonials", href: "/testimonials" },
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen,    setIsOpen]    = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
-   
-    <nav className="fixed top-12 sm:top-14 z-9999 w-full border-b border-white/5 bg-[#0F0F0F] backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <div className="flex h-16 sm:h-20 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <img
-              src="/favicon.svg"
-              alt="Logo"
-              className="h-8 w-8 sm:h-9 sm:w-9"
-              width={36}
-              height={36}
-            />
-            {/* Optional: add text logo if you want */}
-            {/* <span className="text-lg font-semibold tracking-tight">YourName</span> */}
-          </Link>
+      <nav
+        className={`
+          fixed top-0 left-0 right-0 z-[9999]
+          transition-all duration-500 ease-out
+          ${scrolled
+            ? "border-b border-white/[0.06] bg-[#080808]/85 backdrop-blur-2xl shadow-[0_1px_40px_rgba(0,0,0,0.6)]"
+            : "bg-transparent border-b border-transparent"
+          }
+        `}
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <div className="flex h-[68px] items-center justify-between">
 
-          {/* Desktop Navigation */}
-          <div className="hidden items-center gap-8 md:flex">
-            <div className="flex items-center gap-4">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href;
-                const Icon = item.icon;
+            {/* ── Logo ── */}
+            <Link
+              href="/"
+              className="flex items-center gap-3 group"
+              aria-label="Ahsan Bashir — Home"
+            >
+              <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:shadow-indigo-500/40 transition-shadow duration-300">
+                <span
+                  className="text-white text-xs font-black tracking-tight"
+                  style={{ fontFamily: "var(--font-syne)" }}
+                >
+                  AB
+                </span>
+              </div>
+              <div className="hidden sm:flex flex-col leading-none">
+                <span
+                  className="text-[13px] font-bold text-white tracking-wide"
+                  style={{ fontFamily: "var(--font-syne)" }}
+                >
+                  Ahsan Bashir
+                </span>
+                <span
+                  className="text-[10px] text-gray-500 tracking-widest uppercase"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  Full-Stack · Shopify
+                </span>
+              </div>
+            </Link>
+
+            {/* ── Desktop Links ── */}
+            <div className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => {
+                const active = isActive(link.href);
                 return (
                   <Link
-                    key={item.href}
-                    href={item.href}
-                    className="group relative"
+                    key={link.href}
+                    href={link.href}
+                    className={`
+                      relative px-4 py-2 rounded-lg text-sm font-medium
+                      transition-all duration-200 group
+                      ${active
+                        ? "text-white"
+                        : "text-gray-400 hover:text-white"
+                      }
+                    `}
+                    style={{ fontFamily: "var(--font-dm-sans)" }}
                   >
-                    <div
+                    {/* hover / active bg pill */}
+                    <span
                       className={`
-                        p-2.5 rounded-lg transition-all duration-300
-                        ${isActive 
-                          ? 'text-white bg-white/10' 
-                          : 'text-gray-400 hover:text-white hover:bg-white/5'
+                        absolute inset-0 rounded-lg transition-all duration-200
+                        ${active
+                          ? "bg-white/[0.07] border border-white/[0.08]"
+                          : "bg-transparent group-hover:bg-white/[0.04]"
                         }
                       `}
-                    >
-                      <Icon size={20} />
-                    </div>
-                    <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                      {item.label}
-                    </span>
+                    />
+                    <span className="relative">{link.label}</span>
+
+                    {/* active bottom dot */}
+                    {active && (
+                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-indigo-400" />
+                    )}
                   </Link>
                 );
               })}
             </div>
 
-           
-            {/* <Link
-              href="/contact"
-              className={`
-                relative inline-flex items-center justify-center gap-2
-                rounded-full px-6 py-2.5 text-sm font-medium
-                bg-gradient-to-b from-gray-800 to-gray-900
-                border border-gray-700/60 text-gray-200
-                shadow-md shadow-black/20
-                transition-all duration-300 ease-out
-                hover:border-indigo-500/40 hover:text-white hover:shadow-indigo-500/10 hover:-translate-y-0.5
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F0F0F]
-                active:translate-y-0
-              `}
+            {/* ── Right: availability + CTA ── */}
+            <div className="hidden md:flex items-center gap-3">
+              {/* availability pill */}
+              <div
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.07] bg-white/[0.03]"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <span className="text-[11px] text-gray-400 tracking-wide">Available</span>
+              </div>
+
+              {/* CTA */}
+              <Link
+                href="/contact"
+                className="
+                  group relative inline-flex items-center gap-2
+                  px-5 py-2.5 rounded-full
+                  bg-indigo-600 hover:bg-indigo-500
+                  text-white text-sm font-semibold
+                  shadow-lg shadow-indigo-600/25 hover:shadow-indigo-500/40
+                  transition-all duration-300 hover:scale-[1.03] active:scale-95
+                  overflow-hidden
+                "
+                style={{ fontFamily: "var(--font-syne)" }}
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <span className="relative">Let&apos;s Talk</span>
+                <ArrowUpRight
+                  size={14}
+                  className="relative group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
+                />
+              </Link>
+            </div>
+
+            {/* ── Mobile hamburger ── */}
+            <button
+              type="button"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen(!isOpen)}
+              className="
+                md:hidden relative z-50 w-10 h-10 rounded-xl
+                flex items-center justify-center
+                border border-white/[0.08] bg-white/[0.04]
+                text-gray-300 hover:text-white hover:bg-white/[0.08]
+                transition-all duration-200
+              "
             >
-              Let's Talk
-            </Link> */}
+              {isOpen
+                ? <X size={18} />
+                : <Menu size={18} />
+              }
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            onClick={() => setIsOpen(!isOpen)}
-            className="relative z-50 md:hidden text-gray-300 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-md p-1"
-          >
-            {isOpen ? (
-              <X className="h-7 w-7 transition-transform duration-300" />
-            ) : (
-              <Menu className="h-7 w-7 transition-transform duration-300" />
-            )}
-          </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* ── Mobile overlay ── */}
       <div
         className={`
-          md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300
+          fixed inset-0 z-[9998] bg-black/70 backdrop-blur-sm
+          transition-opacity duration-300 md:hidden
           ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
         `}
         onClick={() => setIsOpen(false)}
-        aria-hidden={!isOpen}
+        aria-hidden
       />
 
-      {/* Mobile Menu Panel */}
+      {/* ── Mobile drawer ── */}
       <div
         className={`
-          md:hidden fixed top-0 right-0 bottom-0 z-50 w-4/5 max-w-xs bg-black border-l border-white/5
-          transform transition-transform duration-400 ease-in-out
+          fixed top-0 right-0 bottom-0 z-[9999] w-[300px]
+          bg-[#0c0c0c] border-l border-white/[0.07]
+          flex flex-col
+          transform transition-transform duration-300 ease-out md:hidden
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
       >
-        <div className="flex h-16 items-center justify-between border-b border-white/5 px-6">
-          <span className="text-lg font-semibold text-white">Menu</span>
+        {/* drawer header */}
+        <div className="flex items-center justify-between px-6 h-[68px] border-b border-white/[0.06]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+              <span className="text-white text-[11px] font-black" style={{ fontFamily: "var(--font-syne)" }}>AB</span>
+            </div>
+            <span className="text-sm font-bold text-white" style={{ fontFamily: "var(--font-syne)" }}>
+              Ahsan Bashir
+            </span>
+          </div>
           <button
             onClick={() => setIsOpen(false)}
             aria-label="Close menu"
-            className="text-gray-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-full p-1"
+            className="w-8 h-8 rounded-lg flex items-center justify-center border border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
           >
-            <X className="h-6 w-6" />
+            <X size={16} />
           </button>
         </div>
 
-        <div className="flex flex-col px-6 py-10 gap-4 bg-black">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            const Icon = item.icon;
+        {/* drawer links */}
+        <div className="flex flex-col gap-1 px-4 pt-6 flex-1">
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
             return (
               <Link
-                key={item.href}
-                href={item.href}
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
                 className={`
-                  flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300
-                  ${isActive
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-                    : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                  flex items-center justify-between px-4 py-3.5 rounded-xl
+                  text-sm font-medium transition-all duration-200
+                  ${active
+                    ? "bg-indigo-600/15 border border-indigo-500/25 text-white"
+                    : "text-gray-400 hover:text-white hover:bg-white/[0.05]"
                   }
                 `}
-                onClick={() => setIsOpen(false)}
+                style={{ fontFamily: "var(--font-dm-sans)" }}
               >
-                <Icon size={22} />
-                <span className="text-base font-medium">{item.label}</span>
+                <span>{link.label}</span>
+                {active && <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />}
               </Link>
             );
           })}
+        </div>
+
+        {/* drawer footer */}
+        <div className="px-4 pb-8 pt-4 border-t border-white/[0.06] space-y-3">
+          {/* availability */}
+          <div
+            className="flex items-center gap-2 px-4 py-3 rounded-xl border border-white/[0.07] bg-white/[0.02]"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            </span>
+            <span className="text-[11px] text-gray-400 tracking-wide">Available for work</span>
+          </div>
 
           <Link
             href="/contact"
-            className={`
-    group relative inline-flex items-center justify-center gap-2
-    overflow-hidden rounded-full px-7 py-3.5
-    bg-linear-to-r from-blue-600-to-cyan-500
-    text-white font-medium text-base
-    shadow-lg shadow-blue-700 hover:shadow-blue-500/40
-    transition-all duration-300 ease-out
-    hover:scale-[1.04] hover:shadow-xl
-    active:scale-95
-  `}
             onClick={() => setIsOpen(false)}
+            className="
+              flex items-center justify-center gap-2
+              w-full py-3.5 rounded-xl
+              bg-indigo-600 hover:bg-indigo-500
+              text-white text-sm font-semibold
+              shadow-lg shadow-indigo-600/20
+              transition-all duration-200 active:scale-95
+            "
+            style={{ fontFamily: "var(--font-syne)" }}
           >
-            Let's Talk
+            Let&apos;s Talk
+            <ArrowUpRight size={14} />
           </Link>
         </div>
       </div>
-    </nav>
     </>
   );
 }
