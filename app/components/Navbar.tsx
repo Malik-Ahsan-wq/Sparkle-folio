@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 
 const navLinks = [
   { label: "Home",         href: "/" },
@@ -23,11 +24,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const lenis = useLenis();
+
   // lock body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
+    if (isOpen) {
+      lenis?.stop();
+    } else {
+      lenis?.start();
+    }
+  }, [isOpen, lenis]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
