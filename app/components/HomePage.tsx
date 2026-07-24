@@ -26,6 +26,27 @@ const stats = [
   { value: "100%", label: "Client Focus" },
 ];
 
+const skillCategories = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "React / Next.js", level: 95 },
+      { name: "TypeScript", level: 90 },
+      { name: "Tailwind CSS", level: 92 },
+      { name: "GSAP / Framer Motion", level: 85 },
+    ],
+  },
+  {
+    title: "Backend & Tools",
+    skills: [
+      { name: "Node.js / Express", level: 90 },
+      { name: "MongoDB / Supabase", level: 88 },
+      { name: "Shopify", level: 85 },
+      { name: "Redis / BullMQ", level: 80 },
+    ],
+  },
+];
+
 const services = [
   {
     icon: Code,
@@ -108,35 +129,83 @@ const miniTestimonials = [
 export default function HomePage() {
   const container = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const blob1Ref = useRef<HTMLDivElement>(null);
+  const blob2Ref = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.from(".hero-name", { y: 80, opacity: 0, duration: 1.4, stagger: 0.2 })
-        .from(".hero-sparkle", { scale: 0, opacity: 0, duration: 1, ease: "back.out(1.7)", stagger: 0.25 }, "-=0.6")
-        .from(".hero-tag", { y: 30, opacity: 0, duration: 0.8 }, "-=0.4")
-        .from(".hero-subtitle", { y: 40, opacity: 0, duration: 1 }, "-=0.4")
-        .from(".hero-desc", { y: 30, opacity: 0, duration: 0.8 }, "-=0.5")
-        .from(".hero-btn", { y: 20, opacity: 0, duration: 0.6, stagger: 0.08 }, "-=0.3");
+      // ── Hero: multi-dimensional entrance ──
+      const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      heroTl
+        .from(".hero-name", {
+          y: 120, opacity: 0, rotateX: -60, duration: 1.6, stagger: 0.15,
+          transformOrigin: "top center", ease: "power4.out",
+        })
+        .from(".hero-sparkle", {
+          scale: 0, opacity: 0, rotation: -180, duration: 1.2,
+          ease: "elastic.out(1, 0.5)", stagger: 0.2,
+        }, "-=0.8")
+        .from(".hero-tag", {
+          y: 40, opacity: 0, scale: 0.9, duration: 1, ease: "back.out(1.7)",
+        }, "-=0.5")
+        .from(".hero-subtitle", {
+          y: 50, opacity: 0, duration: 1.2,
+          ease: "power4.out",
+        }, "-=0.5")
+        .from(".hero-desc", {
+          y: 30, opacity: 0, filter: "blur(6px)", duration: 0.9,
+          ease: "power3.out",
+        }, "-=0.4")
+        .from(".hero-btn", {
+          y: 30, opacity: 0, scale: 0.95, duration: 0.7,
+          stagger: 0.08, ease: "back.out(1.4)",
+        }, "-=0.3");
 
+      // ── Hero idle micro-animations ──
+      gsap.to(".hero-sparkle", {
+        scale: 1.15, opacity: 0.3, duration: 2,
+        ease: "sine.inOut", yoyo: true, repeat: -1, stagger: 0.4,
+      });
+      gsap.to(".hero-name", {
+        y: -4, duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1, stagger: 0.2,
+      });
+
+      // ── Profile image: clip-path circle reveal + parallax ──
       gsap.from(".profile-img-container", {
-        scale: 0.88, opacity: 0, duration: 1.6, ease: "power4.out",
-        scrollTrigger: { trigger: ".profile-img-container", start: "top 85%" },
+        scale: 0.85, opacity: 0, duration: 1.8, ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".profile-img-container", start: "top 82%",
+          toggleActions: "play none none reverse",
+        },
+      });
+      gsap.to(".profile-img-container", {
+        y: -30, ease: "none",
+        scrollTrigger: {
+          trigger: ".profile-img-container", start: "top bottom", end: "bottom top",
+          scrub: 1.5,
+        },
       });
 
+      // ── Summary card: staggered layers ──
       gsap.from(".summary-card", {
-        y: 60, opacity: 0, duration: 1.3, ease: "power4.out",
-        scrollTrigger: { trigger: ".summary-card", start: "top 80%" },
+        y: 80, opacity: 0, scale: 0.96, duration: 1.5, ease: "power4.out",
+        scrollTrigger: {
+          trigger: ".summary-card", start: "top 78%",
+          toggleActions: "play none none reverse",
+        },
       });
 
-      gsap.utils.toArray<HTMLElement>(".stat-item").forEach((el, i) => {
+      // ── Stats: counter + card stagger ──
+      const statEls = gsap.utils.toArray<HTMLElement>(".stat-item");
+      statEls.forEach((el, i) => {
         const valueEl = el.querySelector(".stat-value");
         gsap.fromTo(el,
-          { y: 40, opacity: 0 },
+          { y: 50, opacity: 0, scale: 0.92 },
           {
-            y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%" },
-            delay: i * 0.1,
+            y: 0, opacity: 1, scale: 1, duration: 0.9, ease: "back.out(1.4)",
+            scrollTrigger: { trigger: el, start: "top 88%" },
+            delay: i * 0.12,
             onStart: () => {
               if (!valueEl) return;
               const finalText = valueEl.textContent || "";
@@ -146,17 +215,20 @@ export default function HomePage() {
                 return;
               }
               const suffix = finalText.replace(/[\d.]/g, "");
-              const start = 0;
               const end = num;
-              const dur = 1.8;
+              const dur = 2;
               const startTime = performance.now();
               const update = () => {
                 const now = (performance.now() - startTime) / 1000;
-                const progress = Math.min(now / dur, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const current = start + (end - start) * eased;
-                valueEl.textContent = Number.isInteger(end) ? Math.floor(current) + suffix : current.toFixed(1) + suffix;
-                if (progress < 1) requestAnimationFrame(update);
+                const p = Math.min(now / dur, 1);
+                const eased = p < 0.5
+                  ? 4 * p * p * p
+                  : 1 - Math.pow(-2 * p + 2, 3) / 2;
+                const current = 0 + (end - 0) * eased;
+                valueEl.textContent = Number.isInteger(end)
+                  ? Math.floor(current) + suffix
+                  : current.toFixed(1) + suffix;
+                if (p < 1) requestAnimationFrame(update);
               };
               requestAnimationFrame(update);
             },
@@ -164,90 +236,217 @@ export default function HomePage() {
         );
       });
 
-      gsap.from(".section-bar", {
-        scaleX: 0, duration: 0.8, ease: "power3.out",
-        transformOrigin: "left center",
-        scrollTrigger: { trigger: ".section-bar", start: "top 90%" },
+      // ── Skills: bar fill + stagger ──
+      const skillItems = gsap.utils.toArray<HTMLElement>(".skill-item");
+      skillItems.forEach((item, i) => {
+        const bar = item.querySelector<HTMLElement>(".skill-bar");
+        const percentEl = item.querySelector<HTMLElement>(".skill-percent");
+        const target = parseInt(percentEl?.getAttribute("data-target") || "0");
+
+        gsap.fromTo(
+          item,
+          { opacity: 0, x: -30 },
+          {
+            opacity: 1, x: 0, duration: 0.7, ease: "power3.out",
+            delay: i * 0.1,
+            scrollTrigger: { trigger: ".skills-grid", start: "top 78%" },
+            onStart: () => {
+              if (!bar) return;
+              gsap.to(bar, {
+                width: `${target}%`,
+                duration: 1.4,
+                ease: "power3.inOut",
+                delay: 0.2,
+              });
+              if (!percentEl) return;
+              const obj = { val: 0 };
+              gsap.to(obj, {
+                val: target,
+                duration: 1.6,
+                ease: "power3.inOut",
+                delay: 0.2,
+                onUpdate: () => {
+                  percentEl.textContent = `${Math.floor(obj.val)}%`;
+                },
+              });
+            },
+          }
+        );
       });
 
-      gsap.from(".section-title", {
-        y: 40, opacity: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: ".section-title", start: "top 85%" },
-      });
-
-      gsap.from(".service-card", {
-        y: 60, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.12,
-        scrollTrigger: { trigger: ".services-grid", start: "top 80%" },
-      });
-
-      gsap.from(".service-icon", {
-        scale: 0, opacity: 0, duration: 0.8, ease: "back.out(2)",
+      gsap.from(".skill-category", {
+        y: 50, opacity: 0, scale: 0.95, duration: 1.1, ease: "power4.out",
         stagger: 0.15,
-        scrollTrigger: { trigger: ".services-grid", start: "top 75%" },
+        scrollTrigger: { trigger: ".skills-grid", start: "top 82%" },
       });
 
+      gsap.utils.toArray<HTMLElement>(".skill-category").forEach((card) => {
+        gsap.to(card, {
+          y: -3, duration: 3 + Math.random() * 2,
+          ease: "sine.inOut", yoyo: true, repeat: -1, delay: Math.random() * 2,
+        });
+      });
+
+      gsap.utils.toArray<HTMLElement>(".skill-bar").forEach((bar) => {
+        if ((bar as HTMLElement).style.width !== "0%") {
+          gsap.to(bar, {
+            backgroundPosition: "200% 0",
+            duration: 2,
+            ease: "none",
+            repeat: -1,
+            delay: 2,
+          });
+        }
+      });
+
+      // ── Section header: bar morph + title reveal ──
+      gsap.utils.toArray<HTMLElement>(".section-bar").forEach((bar) => {
+        gsap.from(bar, {
+          scaleX: 0, duration: 1, ease: "power4.out",
+          transformOrigin: "left center",
+          scrollTrigger: { trigger: bar, start: "top 88%" },
+        });
+        gsap.to(bar, {
+          opacity: 0.4, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: -1,
+        });
+      });
+      gsap.utils.toArray<HTMLElement>(".section-title").forEach((title) => {
+        gsap.from(title, {
+          y: 50, opacity: 0, duration: 1.1, ease: "power4.out",
+          scrollTrigger: { trigger: title, start: "top 82%" },
+        });
+      });
+
+      // ── Services: alternating directional stagger + icon float ──
+      gsap.from(".service-card", {
+        y: 80, opacity: 0, scale: 0.93, duration: 1.2,
+        ease: "power4.out", stagger: { each: 0.15, from: "start" },
+        scrollTrigger: { trigger: ".services-grid", start: "top 78%" },
+      });
+      gsap.from(".service-icon", {
+        scale: 0, opacity: 0, rotation: -90, duration: 1,
+        ease: "back.out(2)", stagger: 0.18,
+        scrollTrigger: { trigger: ".services-grid", start: "top 73%" },
+      });
+      gsap.utils.toArray<HTMLElement>(".service-icon").forEach((icon) => {
+        gsap.to(icon, {
+          y: -4, duration: 2.5 + Math.random() * 1.5,
+          ease: "sine.inOut", yoyo: true, repeat: -1,
+        });
+      });
+
+      // ── Projects: stagger with rotation + preview Ken Burns ──
       gsap.from(".project-card", {
-        y: 60, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.12,
-        scrollTrigger: { trigger: ".projects-grid", start: "top 80%" },
+        y: 70, opacity: 0, rotationX: -10, duration: 1.2,
+        ease: "power4.out", stagger: { each: 0.13, from: "start" },
+        transformOrigin: "top center",
+        scrollTrigger: { trigger: ".projects-grid", start: "top 78%" },
       });
-
       gsap.from(".project-preview", {
-        scale: 0.92, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.12,
-        scrollTrigger: { trigger: ".projects-grid", start: "top 75%" },
+        scale: 0.88, opacity: 0, duration: 1.2, ease: "power4.out",
+        stagger: 0.13,
+        scrollTrigger: { trigger: ".projects-grid", start: "top 73%" },
       });
 
+      // ── Testimonials: quote draw + star ripple ──
       gsap.from(".testimonial-card", {
-        y: 60, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.12,
-        scrollTrigger: { trigger: ".testimonials-grid", start: "top 80%" },
+        y: 70, opacity: 0, scale: 0.94, duration: 1.2,
+        ease: "power4.out", stagger: 0.13,
+        scrollTrigger: { trigger: ".testimonials-grid", start: "top 78%" },
       });
-
       gsap.from(".testimonial-star", {
-        scale: 0, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: 0.04,
-        scrollTrigger: { trigger: ".testimonials-grid", start: "top 75%" },
+        scale: 0, opacity: 0, rotation: -180, duration: 0.6,
+        ease: "back.out(2)", stagger: 0.05,
+        scrollTrigger: { trigger: ".testimonials-grid", start: "top 73%" },
       });
-
       gsap.from(".testimonial-quote", {
-        scaleX: 0, opacity: 0, duration: 0.6, ease: "power3.out",
-        transformOrigin: "left center", stagger: 0.15,
-        scrollTrigger: { trigger: ".testimonials-grid", start: "top 75%" },
+        scaleX: 0, opacity: 0, duration: 0.7, ease: "power4.out",
+        transformOrigin: "left center", stagger: 0.18,
+        scrollTrigger: { trigger: ".testimonials-grid", start: "top 73%" },
       });
 
-      gsap.from(".action-card", {
-        y: 70, opacity: 0, duration: 1.1, ease: "power3.out", stagger: 0.15,
-        scrollTrigger: { trigger: ".action-cards", start: "top 80%" },
+      // ── Action cards: staggered from different directions ──
+      gsap.utils.toArray<HTMLElement>(".action-card").forEach((card, i) => {
+        gsap.from(card, {
+          y: 80, opacity: 0, scale: 0.92, duration: 1.2,
+          ease: "power4.out", delay: i * 0.1,
+          scrollTrigger: { trigger: card, start: "top 85%" },
+        });
       });
 
+      // ── CTA: scale + glow surge ──
       gsap.from(".cta-section", {
-        scale: 0.92, opacity: 0, duration: 1.4, ease: "power4.out",
-        scrollTrigger: { trigger: ".cta-section", start: "top 85%" },
+        scale: 0.9, opacity: 0, duration: 1.6, ease: "power4.out",
+        scrollTrigger: { trigger: ".cta-section", start: "top 82%" },
       });
-
       gsap.from(".cta-heading", {
-        y: 50, opacity: 0, duration: 1.2, ease: "power3.out",
-        scrollTrigger: { trigger: ".cta-section", start: "top 80%" },
+        y: 60, opacity: 0, filter: "blur(8px)", duration: 1.3, ease: "power4.out",
+        scrollTrigger: { trigger: ".cta-section", start: "top 78%" },
       });
-
       gsap.from(".cta-desc", {
-        y: 30, opacity: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: ".cta-section", start: "top 80%" },
+        y: 30, opacity: 0, duration: 1, ease: "power3.out",
+        scrollTrigger: { trigger: ".cta-section", start: "top 78%" },
       });
-
       gsap.from(".cta-btn", {
-        y: 20, opacity: 0, duration: 0.7, ease: "power3.out", stagger: 0.1,
-        scrollTrigger: { trigger: ".cta-section", start: "top 80%" },
+        y: 25, opacity: 0, scale: 0.95, duration: 0.8, ease: "back.out(1.4)",
+        stagger: 0.1,
+        scrollTrigger: { trigger: ".cta-section", start: "top 78%" },
       });
 
+      gsap.to(".cta-section", {
+        boxShadow: "0 0 80px rgba(99,102,241,0.08)",
+        duration: 2,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: 1.5,
+      });
+
+      // ── Footer ──
       gsap.from(".footer-content", {
-        y: 40, opacity: 0, duration: 1.2, ease: "power3.out",
-        scrollTrigger: { trigger: ".footer-content", start: "top 90%" },
+        y: 50, opacity: 0, duration: 1.3, ease: "power4.out",
+        scrollTrigger: { trigger: ".footer-content", start: "top 88%" },
       });
 
-      gsap.to(".ambient-blob-1", {
-        y: 60, x: 30, duration: 8, ease: "sine.inOut", repeat: -1, yoyo: true,
-      });
-      gsap.to(".ambient-blob-2", {
-        y: -40, x: -20, duration: 10, ease: "sine.inOut", repeat: -1, yoyo: true,
-      });
+      // ── Ambient blobs: parallax on scroll + mouse tracking ──
+      if (blob1Ref.current) {
+        gsap.to(blob1Ref.current, {
+          y: 80, x: 40, duration: 8, ease: "sine.inOut", repeat: -1, yoyo: true,
+        });
+        gsap.to(blob1Ref.current, {
+          y: -60, ease: "none",
+          scrollTrigger: {
+            trigger: blob1Ref.current, start: "top bottom", end: "bottom top",
+            scrub: 2,
+          },
+        });
+      }
+      if (blob2Ref.current) {
+        gsap.to(blob2Ref.current, {
+          y: -50, x: -30, duration: 10, ease: "sine.inOut", repeat: -1, yoyo: true,
+        });
+        gsap.to(blob2Ref.current, {
+          y: 40, ease: "none",
+          scrollTrigger: {
+            trigger: blob2Ref.current, start: "top bottom", end: "bottom top",
+            scrub: 2,
+          },
+        });
+      }
+
+      // ── Mouse-follow parallax on hero ──
+      if (heroRef.current) {
+        const heroEl = heroRef.current;
+        const handleMouse = (e: MouseEvent) => {
+          const rect = heroEl.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(".hero-name", { x: x * 20, y: y * 10, duration: 1.2, ease: "power2.out", overwrite: "auto" });
+          gsap.to(".hero-sparkle", { x: x * 30, y: y * 15, duration: 1.5, ease: "power2.out", overwrite: "auto" });
+        };
+        heroEl.addEventListener("mousemove", handleMouse);
+        return () => heroEl.removeEventListener("mousemove", handleMouse);
+      }
     },
     { scope: container }
   );
@@ -263,19 +462,19 @@ export default function HomePage() {
   );
 
   return (
-    <div ref={container} className="pt-[68px] min-h-screen text-white bg-[#080808] dot-grid">
+    <div ref={container} className="pt-[68px] min-h-screen md:mt-20 mt-10 text-white bg-[#080808] dot-grid">
       <Navbar />
 
       {/* Ambient glow blobs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <div className="ambient-blob-1 absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-indigo-600/8 blur-[120px]" />
-        <div className="ambient-blob-2 absolute bottom-[10%] right-[-5%] w-[400px] h-[400px] rounded-full bg-purple-600/6 blur-[100px]" />
+        <div ref={blob1Ref} className="ambient-blob-1 absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-indigo-600/8 blur-[120px]" />
+        <div ref={blob2Ref} className="ambient-blob-2 absolute bottom-[10%] right-[-5%] w-[400px] h-[400px] rounded-full bg-purple-600/6 blur-[100px]" />
       </div>
 
       <main className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
 
         {/* ── Hero Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 items-start">
+        <div ref={heroRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 items-start">
 
           {/* Profile Image */}
           <div className="glass-card p-5 profile-img-container gradient-border">
@@ -299,27 +498,27 @@ export default function HomePage() {
           </div>
 
           {/* Summary */}
-          <div className="md:col-span-2 flex flex-col gap-6">
-            <div className="flex items-center justify-center gap-4">
-              <Sparkles className="text-indigo-400/60 hero-sparkle" size={28} />
+          <div className="md:col-span-2 flex flex-col gap-4 md:gap-6">
+            <div className="flex items-center justify-center gap-2 sm:gap-4">
+              <Sparkles className="text-indigo-400/60 hero-sparkle hidden sm:block" size={22} />
               <h1
-                className="text-5xl md:text-7xl font-bold uppercase tracking-tighter text-center hero-name"
+                className="text-3xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter text-center hero-name"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
                 Ahsan{" "}
                 <span className="gradient-text hero-name">Bashir</span>
               </h1>
-              <Sparkles className="text-indigo-400/60 hero-sparkle" size={28} />
+              <Sparkles className="text-indigo-400/60 hero-sparkle hidden sm:block" size={22} />
             </div>
 
-            <div className="glass-card p-6 md:p-10 relative overflow-hidden summary-card noise-overlay">
-              <Sparkles className="absolute top-5 left-5 text-indigo-500/20" size={36} />
+            <div className="glass-card p-5 md:p-10 relative overflow-hidden summary-card noise-overlay">
+              <Sparkles className="absolute top-5 left-5 text-indigo-500/20" size={28} />
 
-              <div className="relative z-10 flex flex-col gap-5">
+              <div className="relative z-10 flex flex-col gap-4 md:gap-5">
                 <div>
                   <span className="tag mb-3 inline-flex hero-tag">Full-Stack &amp; Shopify Developer</span>
                   <h2
-                    className="text-3xl md:text-4xl font-bold mt-2 hero-subtitle"
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2 hero-subtitle"
                     style={{ fontFamily: "var(--font-syne)" }}
                   >
                     Building{" "}
@@ -368,11 +567,11 @@ export default function HomePage() {
         </div>
 
         {/* ── Stats Row ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 stats-row">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-16 stats-row">
           {stats.map((s, i) => (
-            <div key={i} className="glass-card p-5 text-center stat-item">
+            <div key={i} className="glass-card p-4 md:p-5 text-center stat-item">
               <div
-                className="text-3xl md:text-4xl font-bold gradient-text mb-1 stat-value"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-1 stat-value"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
                 {s.value}
@@ -384,12 +583,58 @@ export default function HomePage() {
           ))}
         </div>
 
+        {/* ── Skills Section ── */}
+        <div className="my-16 skills-section">
+          <div className="flex items-center gap-2 md:gap-3 mb-10">
+            <span className="w-1 h-7 rounded-full bg-gradient-to-b from-indigo-500 to-cyan-500 inline-block section-bar" />
+            <h2
+              className="text-xl md:text-3xl font-bold section-title"
+              style={{ fontFamily: "var(--font-syne)" }}
+            >
+              Tech <span className="gradient-text">Stack</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 skills-grid">
+            {skillCategories.map((cat, ci) => (
+              <div key={ci} className="glass-card p-5 md:p-8 skill-category">
+                <h3
+                  className="text-xs md:text-sm font-bold uppercase tracking-widest text-indigo-400/80 mb-5 md:mb-7 skill-cat-title"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {cat.title}
+                </h3>
+                <div className="flex flex-col gap-4 md:gap-5">
+                  {cat.skills.map((skill, si) => (
+                    <div key={si} className="skill-item">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm font-medium text-gray-300 skill-name">{skill.name}</span>
+                        <span
+                          className="text-xs font-mono text-indigo-400 tabular-nums skill-percent"
+                          data-target={skill.level}
+                        >
+                          0%
+                        </span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 skill-bar"
+                          style={{ width: "0%", backgroundSize: "200% 100%" }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* ── Services Section ── */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
+        <div className="my-16">
+          <div className="flex items-center gap-2 md:gap-3 mb-8">
             <span className="w-1 h-7 rounded-full bg-gradient-to-b from-indigo-500 to-purple-500 inline-block section-bar" />
             <h2
-              className="text-2xl md:text-3xl font-bold section-title"
+              className="text-xl md:text-3xl font-bold section-title"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               What <span className="gradient-text">I Do</span>
@@ -401,10 +646,10 @@ export default function HomePage() {
               return (
                 <div
                   key={i}
-                  className="glass-card p-6 md:p-7 group service-card hover:border-indigo-500/25 transition-all duration-300"
+                  className="glass-card p-5 md:p-7 group service-card hover:border-indigo-500/25 transition-all duration-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-5 group-hover:bg-indigo-500/20 transition-colors service-icon">
-                    <Icon size={22} className="text-indigo-400" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4 md:mb-5 group-hover:bg-indigo-500/20 transition-colors service-icon">
+                    <Icon size={20} className="text-indigo-400" />
                   </div>
                   <h3
                     className="text-base font-bold mb-2"
@@ -422,12 +667,12 @@ export default function HomePage() {
         </div>
 
         {/* ── Featured Projects ── */}
-        <div className="mb-16">
+        <div className="my-16">
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
               <span className="w-1 h-7 rounded-full bg-gradient-to-b from-blue-500 to-indigo-500 inline-block section-bar" />
               <h2
-                className="text-2xl md:text-3xl font-bold section-title"
+                className="text-xl md:text-3xl font-bold section-title"
                 style={{ fontFamily: "var(--font-syne)" }}
               >
                 Featured <span className="gradient-text">Projects</span>
@@ -483,11 +728,11 @@ export default function HomePage() {
         </div>
 
         {/* ── Testimonials ── */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
+        <div className="my-16">
+          <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
             <span className="w-1 h-7 rounded-full bg-gradient-to-b from-purple-500 to-indigo-500 inline-block section-bar" />
             <h2
-              className="text-2xl md:text-3xl font-bold section-title"
+              className="text-xl md:text-3xl font-bold section-title"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               What Clients <span className="gradient-text">Say</span>
@@ -532,11 +777,11 @@ export default function HomePage() {
         </div>
 
         {/* ── Action Cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 action-cards">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 my-16 action-cards">
 
           {/* Profiles */}
-          <div className="glass-card p-7 group flex flex-col justify-between action-card">
-            <div className="flex gap-4 justify-center py-4">
+          <div className="glass-card p-5 md:p-7 group flex flex-col justify-between action-card">
+            <div className="flex gap-2 md:gap-4 justify-center py-4">
               {[
                 { href: "/contact", icon: <MdEmail size={22} className="text-indigo-400" /> },
                 { href: "https://www.linkedin.com/in/m-ahsan-bashir/", icon: <FaLinkedin size={22} className="text-indigo-400" />, external: true },
@@ -561,12 +806,12 @@ export default function HomePage() {
           </div>
 
           {/* CTA */}
-          <div className="md:col-span-2 glass-card p-10 group flex flex-col justify-between relative overflow-hidden action-card glow-indigo noise-overlay">
+          <div className="md:col-span-2 glass-card p-6 md:p-10 group flex flex-col justify-between relative overflow-hidden action-card glow-indigo noise-overlay">
             <Link href="/contact" className="flex flex-col h-full">
-              <Sparkles className="absolute top-6 left-6 text-indigo-500/20" size={28} />
-              <div className="mt-10 flex-1">
+              <Sparkles className="absolute top-6 left-6 text-indigo-500/20" size={24} />
+              <div className="mt-6 md:mt-10 flex-1">
                 <h2
-                  className="text-4xl md:text-5xl font-bold leading-tight mb-4"
+                  className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4"
                   style={{ fontFamily: "var(--font-syne)" }}
                 >
                   Let&apos;s work{" "}
@@ -585,7 +830,7 @@ export default function HomePage() {
           </div>
 
           {/* Credentials */}
-          <div className="glass-card p-7 group flex flex-col justify-between action-card">
+          <div className="glass-card p-5 md:p-7 group flex flex-col justify-between action-card">
             <div className="flex justify-center py-4 opacity-60 group-hover:opacity-90 transition-opacity">
               <Link href="/about">
                 <img className="w-40 rounded-xl" src="/Gemini_Generated_Image_albe2galbe2galbe.png" alt="credentials" />
@@ -600,7 +845,7 @@ export default function HomePage() {
         </div>
 
         {/* ── Tech Marquee ── */}
-        <div className="glass-card overflow-hidden py-5 mb-12">
+        <div className="glass-card overflow-hidden py-5 my-16">
           <div className="relative flex overflow-hidden">
             <div
               ref={marqueeRef}
@@ -621,17 +866,17 @@ export default function HomePage() {
         </div>
 
         {/* ── CTA Banner ── */}
-        <div className="glass-card p-10 md:p-14 relative overflow-hidden mb-12 cta-section glow-indigo noise-overlay text-center">
-          <Sparkles className="absolute top-6 left-6 text-indigo-500/15" size={36} />
+        <div className="glass-card p-6 md:p-14 relative overflow-hidden my-16 cta-section glow-indigo noise-overlay text-center">
+          <Sparkles className="absolute top-6 left-6 text-indigo-500/15" size={28} />
           <div className="relative z-10">
             <h2
-              className="text-3xl md:text-5xl font-bold leading-tight mb-4 cta-heading"
+              className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight mb-4 cta-heading"
               style={{ fontFamily: "var(--font-syne)" }}
             >
               Ready to build something{" "}
               <span className="gradient-text">great?</span>
             </h2>
-            <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-lg mx-auto mb-8 cta-desc">
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-lg mx-auto mb-6 md:mb-8 cta-desc">
               Whether it is a full-stack application, Shopify store, or a brand identity — let&apos;s turn your idea into reality.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
@@ -657,14 +902,14 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 mt-8 py-10 text-center footer-content">
+      <footer className="border-t border-white/5 mt-8 py-8 md:py-10 text-center footer-content">
         <div
-          className="text-lg font-bold uppercase tracking-widest mb-5 gradient-text"
+          className="text-base md:text-lg font-bold uppercase tracking-widest mb-5 gradient-text"
           style={{ fontFamily: "var(--font-syne)" }}
         >
           AHSAN BASHIR
         </div>
-        <nav className="flex justify-center gap-8 text-gray-600 text-[11px] uppercase tracking-widest" style={{ fontFamily: "var(--font-mono)" }}>
+        <nav className="flex justify-center gap-4 md:gap-8 text-[10px] md:text-[11px] text-gray-600 uppercase tracking-widest" style={{ fontFamily: "var(--font-mono)" }}>
           {["/", "/about", "/works", "/contact", "/testimonials"].map((href, i) => (
             <Link key={i} href={href} className="hover:text-white transition-colors">
               {href === "/" ? "Home" : href.slice(1).charAt(0).toUpperCase() + href.slice(2)}

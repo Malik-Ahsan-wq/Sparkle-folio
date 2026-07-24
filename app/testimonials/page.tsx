@@ -109,7 +109,7 @@ export default function TestimonialsSection() {
     <>
       <Navbar />
 
-      <div ref={sectionRef} className="pt-[68px] min-h-screen bg-[#080808] text-white dot-grid">
+      <div ref={sectionRef} className="pt-[68px]  bg-[#080808] text-white dot-grid">
 
         {/* Ambient blobs */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
@@ -117,7 +117,7 @@ export default function TestimonialsSection() {
           <div className="absolute bottom-[15%] right-[-5%] w-[350px] h-[350px] rounded-full bg-indigo-600/6 blur-[100px]" />
         </div>
 
-        <main className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-24 md:py-32 lg:py-40">
+        <main className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-24 md:py-32">
 
           {/* Header */}
           <div className="mx-auto max-w-3xl text-center mb-16 md:mb-20">

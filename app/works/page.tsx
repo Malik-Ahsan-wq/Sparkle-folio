@@ -70,7 +70,7 @@ const ProjectsPage = () => {
   return (
     <>
       <Navbar />
-      <div className="pt-[68px] min-h-screen bg-[#080808] text-white p-4 md:p-8 lg:p-12 dot-grid">
+      <div className="pt-[68px] md:mt-15 min-h-screen bg-[#080808] text-white p-4 md:p-8 lg:p-12 dot-grid">
 
         {/* Ambient blobs */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">

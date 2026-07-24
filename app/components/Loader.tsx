@@ -129,7 +129,7 @@ export default function Loader() {
             <span
               key={i}
               ref={(el) => { if (el) letterRefs.current[i] = el; }}
-              className="inline-block text-4xl md:text-7xl font-black text-white/90 tracking-tight opacity-0"
+              className="inline-block text-3xl sm:text-4xl md:text-7xl font-black text-white/90 tracking-tight opacity-0"
               style={{ transform: "translateY(60px) rotateX(-90deg)", perspective: "1000px", textShadow: "0 0 60px rgba(99,102,241,0.2)" }}
             >
               {letter === " " ? "\u00A0" : letter}
