@@ -171,7 +171,28 @@ code, pre, kbd, samp {
   animation: shine 2.5s infinite;
 }
 
-/* ─── Fade In Up ─────────────────────────────────────────── */
+/* ─── GPU Acceleration ────────────────────────────────────── */
+.gpu {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+[class*="hero-"],
+[class*="service-"],
+[class*="stat-"],
+[class*="skill-"],
+[class*="project-"],
+[class*="testimonial-"],
+[class*="action-"],
+[class*="cta-"],
+[class*="section-"],
+[class*="footer-"],
+[class*="profile-"],
+[class*="summary-"],
+[class*="ambient-"] {
+  backface-visibility: hidden;
+}
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }

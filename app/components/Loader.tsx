@@ -18,7 +18,7 @@ export default function Loader() {
   const statuses = ["Initializing", "Loading", "Preparing", "Almost ready"];
 
   useEffect(() => {
-    const tl = gsap.timeline({ paused: true });
+    const tl = gsap.timeline({ paused: true, defaults: { force3D: true } });
 
     tl.fromTo(
       logoRef.current,
@@ -99,8 +99,8 @@ export default function Loader() {
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#080808] select-none"
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-indigo-600/8 blur-[180px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full bg-purple-600/6 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[700px] h-[400px] sm:h-[700px] rounded-full bg-indigo-600/8 blur-[120px] sm:blur-[180px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[450px] h-[250px] sm:h-[450px] rounded-full bg-purple-600/6 blur-[80px] sm:blur-[120px]" />
       </div>
 
       <div
@@ -113,14 +113,14 @@ export default function Loader() {
 
       <div className="loader-content flex flex-col items-center relative">
         {/* Logo Mark */}
-        <div ref={logoRef} className="relative mb-10 opacity-0 scale-0">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div ref={logoRef} className="relative mb-6 md:mb-10 opacity-0 scale-0">
+          <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
+            <svg width="20" height="20" className="md:w-[28px] md:h-[28px]" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="16 18 22 12 16 6" />
               <polyline points="8 6 2 12 8 18" />
             </svg>
           </div>
-          <div ref={logoRingRef} className="absolute inset-0 w-14 h-14 rounded-2xl border border-indigo-400/40 scale-0" />
+          <div ref={logoRingRef} className="absolute inset-0 w-10 h-10 md:w-14 md:h-14 rounded-2xl border border-indigo-400/40 scale-0" />
         </div>
 
         {/* Name */}
@@ -163,7 +163,7 @@ export default function Loader() {
         </div>
 
         {/* Progress */}
-        <div className="flex items-center gap-4 w-64 md:w-80">
+        <div className="flex items-center gap-3 md:gap-4 w-48 sm:w-64 md:w-80">
           <div className="flex-1 h-[2px] bg-white/8 rounded-full overflow-hidden">
             <div ref={barRef} className="h-full w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-400 rounded-full origin-left scale-x-0" />
           </div>

@@ -132,9 +132,14 @@ export default function HomePage() {
   const blob1Ref = useRef<HTMLDivElement>(null);
   const blob2Ref = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const mouseX = useRef(0);
+  const mouseY = useRef(0);
+  const rafId = useRef(0);
 
   useGSAP(
     () => {
+      gsap.defaults({ force3D: true });
+
       // ── Hero: multi-dimensional entrance ──
       const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
       heroTl
@@ -154,7 +159,7 @@ export default function HomePage() {
           ease: "power4.out",
         }, "-=0.5")
         .from(".hero-desc", {
-          y: 30, opacity: 0, filter: "blur(6px)", duration: 0.9,
+          y: 30, opacity: 0, scale: 0.97, duration: 0.9,
           ease: "power3.out",
         }, "-=0.4")
         .from(".hero-btn", {
@@ -216,21 +221,17 @@ export default function HomePage() {
               }
               const suffix = finalText.replace(/[\d.]/g, "");
               const end = num;
-              const dur = 2;
-              const startTime = performance.now();
-              const update = () => {
-                const now = (performance.now() - startTime) / 1000;
-                const p = Math.min(now / dur, 1);
-                const eased = p < 0.5
-                  ? 4 * p * p * p
-                  : 1 - Math.pow(-2 * p + 2, 3) / 2;
-                const current = 0 + (end - 0) * eased;
-                valueEl.textContent = Number.isInteger(end)
-                  ? Math.floor(current) + suffix
-                  : current.toFixed(1) + suffix;
-                if (p < 1) requestAnimationFrame(update);
-              };
-              requestAnimationFrame(update);
+              const counter = { val: 0 };
+              gsap.to(counter, {
+                val: end,
+                duration: 2,
+                ease: "power3.inOut",
+                onUpdate: () => {
+                  valueEl.textContent = Number.isInteger(end)
+                    ? Math.floor(counter.val) + suffix
+                    : counter.val.toFixed(1) + suffix;
+                },
+              });
             },
           }
         );
@@ -285,18 +286,6 @@ export default function HomePage() {
           y: -3, duration: 3 + Math.random() * 2,
           ease: "sine.inOut", yoyo: true, repeat: -1, delay: Math.random() * 2,
         });
-      });
-
-      gsap.utils.toArray<HTMLElement>(".skill-bar").forEach((bar) => {
-        if ((bar as HTMLElement).style.width !== "0%") {
-          gsap.to(bar, {
-            backgroundPosition: "200% 0",
-            duration: 2,
-            ease: "none",
-            repeat: -1,
-            delay: 2,
-          });
-        }
       });
 
       // ── Section header: bar morph + title reveal ──
@@ -380,7 +369,7 @@ export default function HomePage() {
         scrollTrigger: { trigger: ".cta-section", start: "top 82%" },
       });
       gsap.from(".cta-heading", {
-        y: 60, opacity: 0, filter: "blur(8px)", duration: 1.3, ease: "power4.out",
+        y: 60, opacity: 0, scale: 0.96, duration: 1.3, ease: "power4.out",
         scrollTrigger: { trigger: ".cta-section", start: "top 78%" },
       });
       gsap.from(".cta-desc", {
@@ -391,15 +380,6 @@ export default function HomePage() {
         y: 25, opacity: 0, scale: 0.95, duration: 0.8, ease: "back.out(1.4)",
         stagger: 0.1,
         scrollTrigger: { trigger: ".cta-section", start: "top 78%" },
-      });
-
-      gsap.to(".cta-section", {
-        boxShadow: "0 0 80px rgba(99,102,241,0.08)",
-        duration: 2,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: 1.5,
       });
 
       // ── Footer ──
@@ -434,18 +414,32 @@ export default function HomePage() {
         });
       }
 
-      // ── Mouse-follow parallax on hero ──
+      // ── Mouse-follow parallax on hero (optimized) ──
       if (heroRef.current) {
         const heroEl = heroRef.current;
+        const quickNameX = gsap.quickTo(".hero-name", "x", { duration: 1.2, ease: "power2.out" });
+        const quickNameY = gsap.quickTo(".hero-name", "y", { duration: 1.2, ease: "power2.out" });
+        const quickSparkX = gsap.quickTo(".hero-sparkle", "x", { duration: 1.5, ease: "power2.out" });
+        const quickSparkY = gsap.quickTo(".hero-sparkle", "y", { duration: 1.5, ease: "power2.out" });
         const handleMouse = (e: MouseEvent) => {
           const rect = heroEl.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          gsap.to(".hero-name", { x: x * 20, y: y * 10, duration: 1.2, ease: "power2.out", overwrite: "auto" });
-          gsap.to(".hero-sparkle", { x: x * 30, y: y * 15, duration: 1.5, ease: "power2.out", overwrite: "auto" });
+          mouseX.current = (e.clientX - rect.left) / rect.width - 0.5;
+          mouseY.current = (e.clientY - rect.top) / rect.height - 0.5;
+          if (!rafId.current) {
+            rafId.current = requestAnimationFrame(() => {
+              quickNameX(mouseX.current * 20);
+              quickNameY(mouseY.current * 10);
+              quickSparkX(mouseX.current * 30);
+              quickSparkY(mouseY.current * 15);
+              rafId.current = 0;
+            });
+          }
         };
         heroEl.addEventListener("mousemove", handleMouse);
-        return () => heroEl.removeEventListener("mousemove", handleMouse);
+        return () => {
+          heroEl.removeEventListener("mousemove", handleMouse);
+          cancelAnimationFrame(rafId.current);
+        };
       }
     },
     { scope: container }
